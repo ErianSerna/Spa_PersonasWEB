@@ -1,0 +1,59 @@
+/* BEGIN EXTERNAL SOURCE */
+function name15() {
+Ingresar()
+}
+/* END EXTERNAL SOURCE */
+/* BEGIN EXTERNAL SOURCE */
+
+/* END EXTERNAL SOURCE */
+/* BEGIN EXTERNAL SOURCE */
+
+/* END EXTERNAL SOURCE */
+/* BEGIN EXTERNAL SOURCE */
+
+/* END EXTERNAL SOURCE */
+/* BEGIN EXTERNAL SOURCE */
+
+///<reference path="C:\Users\PracticanteTic\AppData\Local\Temp\908C878C5267CC15299FB362C32A979FE9E0\4\SpaPersonasWEB\Paginas\Scripts\Login.js" />
+
+/* END EXTERNAL SOURCE */
+/* BEGIN EXTERNAL SOURCE */
+function name2() {
+Ingresar()
+}
+/* END EXTERNAL SOURCE */
+/* BEGIN EXTERNAL SOURCE */
+
+/* END EXTERNAL SOURCE */
+/* BEGIN EXTERNAL SOURCE */
+
+/* END EXTERNAL SOURCE */
+/* BEGIN EXTERNAL SOURCE */
+
+/* END EXTERNAL SOURCE */
+/* BEGIN EXTERNAL SOURCE */
+
+///<reference path="C:\Users\PracticanteTic\AppData\Local\Temp\908C878C5267CC15299FB362C32A979FE9E0\3\SpaPersonasWEB\Paginas\Scripts\Login.js" />
+
+/* END EXTERNAL SOURCE */
+/* BEGIN EXTERNAL SOURCE */
+function name93() {
+Ingresar()
+}
+/* END EXTERNAL SOURCE */
+/* BEGIN EXTERNAL SOURCE */
+
+/* END EXTERNAL SOURCE */
+/* BEGIN EXTERNAL SOURCE */
+
+/* END EXTERNAL SOURCE */
+/* BEGIN EXTERNAL SOURCE */
+
+///<reference path="C:\Users\PracticanteTic\AppData\Local\Temp\908C878C5267CC15299FB362C32A979FE9E0\2\SpaPersonasWEB\Paginas\Scripts\Comunes\CRUD.js" />
+
+/* END EXTERNAL SOURCE */
+/* BEGIN EXTERNAL SOURCE */
+
+///<reference path="C:\Users\PracticanteTic\AppData\Local\Temp\908C878C5267CC15299FB362C32A979FE9E0\2\SpaPersonasWEB\Paginas\Scripts\Login.js" />
+
+/* END EXTERNAL SOURCE */

@@ -1,0 +1,131 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>ADMINISTRACIÓN DE USUARIOS</title>
+
+    <link href="Pages/Estilos/css/all.min.css" rel="stylesheet" />
+    <!-- DataTables -->
+    <link href="Estilos/dataTables.bootstrap4.min.css" rel="stylesheet" />
+    <!-- Theme style -->
+    <link href="Estilos/adminlte.min.css" rel="stylesheet" />
+</head>
+<body class="hold-transition sidebar-mini">
+    <section class="content">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-md-12" id="dvMenu">
+                </div>
+                <!-- left column -->
+                <div class="col-md-12">
+                    <!-- general form elements -->
+                    <div class="card card-primary">
+                        <div class="card-header">
+                            <h3 class="card-title">ADMINISTRACIÓN DE USUARIOS</h3>
+                        </div>
+                        <!-- /.card-header -->
+                        <!-- form start -->
+                        <form id="frmRegistraCliente">
+                            <div class="card-body">
+                                <div class="row">
+                                    <div class="col-md-3">
+                                        <div class="form-group">
+                                            <label for="txtNombre">NOMBRE</label>
+                                            <input type="text" class="form-control" id="txtNombre" placeholder="Nombre del cliente">
+                                        </div>
+                                    </div>
+                                    <div class="col-md-3">
+                                        <div class="form-group">
+                                            <label for="txtDocumento">DOCUMENTO</label>
+                                            <input type="text" class="form-control" id="txtDocumento" placeholder="Documento del cliente">
+                                        </div>
+                                    </div>
+                                    <div class="col-md-3">
+                                        <div class="form-group">
+                                            <label for="txtTelefono">TELÉFONO</label>
+                                            <input type="number" class="form-control" id="txtTelefono" placeholder="Teléfono del cliente">
+                                        </div>
+                                    </div>
+                                    <div class="col-md-3">
+                                        <div class="form-group">
+                                            <label for="txtEmail">EMAIL</label>
+                                            <input type="email" class="form-control" id="txtEmail" placeholder="Email del cliente">
+                                        </div>
+                                    </div>
+                                    <div class="col-md-3">
+                                        <div class="form-group">
+                                            <label for="tipoUsuario">TIPO USUARIO</label>
+                                            <select class="form-control" id="tipousuario" required>
+                                                <!--Opciones generadas de manera dinamica-->
+                                            </select>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row" style="margin-top: 20px;">
+                                    <div class="col-md-4">
+                                        <div class="form-group">
+                                            <button id="bntInsertar" class="btn-block btn-lg btn-outline-success">INSERTAR</button>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <div class="form-group">
+                                            <button id="btnActualizar" class="btn-block btn-lg btn-outline-primary">ACTUALIZAR</button>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <div class="form-group">
+                                            <button id="btnEliminar" class="btn-block btn-lg btn-outline-danger">ELIMINAR</button>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="container-fluid">
+                                    <div class="row">
+                                        <div class="col-12">
+                                            <div class="table-responsive">
+                                                <table class="table table-bordered table-striped">
+                                                    <thead>
+                                                        <tr>
+                                                            <th>Edit</th>
+                                                            <th>Nombre</th>
+                                                            <th>Documento</th>
+                                                            <th>Telefono</th>
+                                                            <th>Email</th>
+                                                            <th>Tipo Usuario</th>
+                                                            <th>Fecha nacimiento</th>
+                                                        </tr>
+                                                    </thead>
+                                                    <tbody>
+                                                        <!--Se llena de manera dinamica-->
+                                                    </tbody>
+                                                </table>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- /.card-body -->
+                            <div class="card-footer">
+                                <div id="dvMensaje" class=""></div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <script src="../Scripts/jquery.min.js"></script>
+    <script src="../Scripts/bootstrap.bundle.min.js"></script>
+    <!--Tables-->
+    <script src="../Scripts/jquery.dataTables.min.js"></script>
+    <script src="../Scripts/dataTables.bootstrap4.min.js"></script>
+    <!--Archivos comunes-->
+    <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.2/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="Scripts/Menu.js"></script>
+    <script src="Scripts/Comunes/CRUD.js"></script>
+    <script src="Scripts/Comunes/Comunes.js"></script>
+    <script src="Scripts/Usuario.js"></script>
+    <!-- /.card -->
+</body>
+</html>

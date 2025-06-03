@@ -5,7 +5,6 @@ async function Ingresar() {
     //let define variables locales de la función
     //const para definir constantes u objetos
     let URL = URLBase + "api/Login/Ingresar";
-    alert("Se ejecutó el Ingresar...");
     const login = new Login($("#txtUsuario").val(), $("#txtClave").val());
     const Respuesta = await EjecutarComandoServicioRpta("POST", URL, login);
     if (Respuesta == null || Respuesta == undefined) {

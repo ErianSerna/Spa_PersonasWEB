@@ -40,6 +40,7 @@ async function EjecutarComandoServicioAuth(Metodo, URLServicio, Objeto) {
         $("#dvMensaje").html(error);
     }
 }
+
 async function EjecutarComandoServicioRpta(Metodo, URLServicio, Objeto) {
     //Se crea un objeto de la clase cliente con los datos de la interfaz
     try {
