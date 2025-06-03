@@ -1,4 +1,4 @@
-﻿var URLBase = "http://localhost:55534/";
+﻿var URLBase = "http://spapersonas2025.runasp.net/";
 jQuery(function () {
     //Registrar los botones para responder al evento click
     $("#dvMenu").load("../Paginas/Menu.html");
@@ -34,7 +34,7 @@ function LlenarTablaProveedor() {
 //        $("#dvMensaje").removeClass("alert alert-danger");
 //        $("#dvMensaje").addClass("alert alert-success");
 //        $("#dvMensaje").html("");
-//        //ConsultÃ³ el empleado
+//        //Consultó el empleado
 //        $("#txtNombre").val(empleado.Nombre);
 //        $("#txtPrimerApellido").val(empleado.PrimerApellido);
 //        $("#txtSegundoApellido").val(empleado.SegundoApellido);

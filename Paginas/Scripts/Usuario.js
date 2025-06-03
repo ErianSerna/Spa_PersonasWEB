@@ -1,4 +1,4 @@
-﻿var URLBase = "http://localhost:55534/"; // para el consumo de las apis
+﻿var URLBase = "http://spapersonas2025.runasp.net/"; // para el consumo de las apis
 
 document.addEventListener("DOMContentLoaded", function () {
     // Metodos y demas
@@ -6,13 +6,38 @@ document.addEventListener("DOMContentLoaded", function () {
 
     // Funcion para llenar la tabla Usuarios
     function llenarTabla() {
+        //const token = localStorage.getItem('token'); // o sessionStorage
+        const token2 = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1bmlxdWVfbmFtZSI6IkVzZXJuYTI2IiwibmJmIjoxNzQ4OTU0NDAwLCJleHAiOjE3NDg5OTc2MDAsImlhdCI6MTc0ODk1NDQwMCwiaXNzIjoiaHR0cDovL2xvY2FsaG9zdDo0NDMyMyIsImF1ZCI6Imh0dHA6Ly9sb2NhbGhvc3Q6NDQzMjMifQ.lg_MiYtQX-KjQ7w_WPTv7t10DgBo6j_3lOzV5RUtji8"
         $.ajax({
             type: "GET",
             url: URLBase + "api/Usuario/Listar",
+            headers: {
+                'Authorization': 'Bearer ' + token2
+            },
             success: function (response) {
-                console.log(response) // Depuracion
+                console.log(response); // Depuración
+                let htmlContent = "";
+                let tablaBody = document.getElementById("tblUsuarioBody");
+                response.forEach(u => {
+                    htmlContent += `
+                    <tr>
+                        <td>${u.Id}</td>
+                        <td>${u.Nombre}</td>
+                        <td>${u.Cedula}</td>
+                        <td>${u.Telefono}</td>
+                        <td>${u.Correo_electronico}</td>
+                        <td>${u.IdTipoUsuario}</td>
+                    </tr>
+                `;
+                    console.log("Nombre usuario: ", u.Nombre);
+                });
+
+                tablaBody.innerHTML = htmlContent;
+            },
+            error: function (xhr, status, error) {
+                console.error("Error en la solicitud:", xhr.responseText);
             }
-        })
+        });
     }
 
 
