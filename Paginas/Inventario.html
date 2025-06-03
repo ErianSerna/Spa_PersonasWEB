@@ -1,14 +1,13 @@
 ﻿<!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Administración de Usuarios - SPA</title>
+    <title>ADMINISTRACIÓN DE INVENTARIO</title>
 
     <link href="Pages/Estilos/css/all.min.css" rel="stylesheet" />
     <link href="Estilos/dataTables.bootstrap4.min.css" rel="stylesheet" />
     <link href="Estilos/adminlte.min.css" rel="stylesheet" />
-
     <!-- Estilos personalizados para SPA -->
     <style>
         body {
@@ -96,91 +95,81 @@
         }
     </style>
 </head>
-<body>
+<body class="hold-transition sidebar-mini">
     <section class="content">
-        <div class="container-fluid py-4">
-            <div class="row justify-content-center">
-                <div class="col-lg-10 col-md-12">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-md-12" id="dvMenu"></div>
+
+                <div class="col-md-12">
                     <div class="card card-primary">
                         <div class="card-header">
-                            <h3 class="card-title">Administración de Usuarios</h3>
+                            <h3 class="card-title">ADMINISTRACIÓN DE INVENTARIO</h3>
                         </div>
-                        <form id="frmRegistraCliente">
+
+                        <form id="frmInventario">
                             <div class="card-body">
-                                <div class="row mb-2">
-                                    <div class="col-md-4">
-                                        <div class="form-group">
-                                            <label for="txtNombreUsuario">Nombre <span>*</span></label>
-                                            <input type="text" class="form-control" id="txtNombreUsuario" placeholder="Nombre del usuario">
-                                        </div>
-                                    </div>
-                                    <div class="col-md-4">
-                                        <div class="form-group">
-                                            <label for="txtDocumentoUsuario">Documento <span>*</span></label>
-                                            <input type="text" class="form-control" id="txtDocumentoUsuario" placeholder="Documento del usuario" oninput="this.value = this.value.replace(/[^0-9]/g, '')">
-                                        </div>
-                                    </div>
-                                    <div class="col-md-4">
-                                        <div class="form-group">
-                                            <label for="txtTelefonoUsuario">Teléfono <span>*</span></label>
-                                            <input type="text" class="form-control" id="txtTelefonoUsuario" placeholder="Teléfono del usuario" oninput="this.value = this.value.replace(/[^0-9]/g, '')">
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="row mb-3" style="display: flex; justify-content:space-evenly">
-                                    <div class="col-md-3">
-                                        <div class="form-group">
-                                            <label for="txtCorreoUsuario">Correo Electrónico <span>*</span></label>
-                                            <input type="text" class="form-control" id="txtCorreoUsuario" placeholder="Correo Electrónico del usuario">
-                                        </div>
-                                    </div>
-                                    <div class="col-md-3">
-                                        <div class="form-group">
-                                            <label for="txtTipoUsuario">Tipo Usuario <span>*</span></label>
-                                            <select class="form-control" id="txtTipoUsuario" required>
-                                                <option value="" selected disabled>Seleccione una opción</option>
-                                                <!--<option value="cliente">Seleccione una opción</option>-->
-                                                <!--<option value="empleado">Seleccione una opción</option>-->
-                                                <!--<option value="administrador">Seleccione una opción</option>-->
-                                                <!--Llenado dinamico con js-->
-                                            </select>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="row mb-4" style="margin-top: 15px">
-                                    <div class="col-md-3">
-                                        <button id="bntInsertar" class="btn-block btn-lg btn-spa-blue" type="button">Insertar</button>
-                                    </div>
-                                    <div class="col-md-3">
-                                        <button id="btnActualizar" class="btn-block btn-lg btn-spa-blue" type="button">Actualizar</button>
-                                    </div>
-                                    <div class="col-md-3">
-                                        <button id="btnEliminar" class="btn-block btn-lg btn-spa-blue" type="button">Eliminar</button>
-                                    </div>
-                                    <div class="col-md-3">
-                                        <button id="btnConsultar" class="btn-block btn-lg btn-spa-blue" type="button">Consultar</button>
-                                    </div>
-                                </div>
                                 <div class="row">
-                                    <div class="col-12">
-                                        <table id="tblUsuario" class="table table-bordered table-striped">
+                                    <div class="col-md-3">
+                                        <div class="form-group">
+                                            <label for="txtNombreProducto">NOMBRE DEL PRODUCTO</label>
+                                            <input type="text" class="form-control" id="txtNombreProducto" placeholder="Nombre del producto">
+                                        </div>
+                                    </div>
+                                    <div class="col-md-3">
+                                        <div class="form-group">
+                                            <label for="txtCantidad">CANTIDAD</label>
+                                            <input type="number" class="form-control" id="txtCantidad" placeholder="Cantidad">
+                                        </div>
+                                    </div>
+                                    <div class="col-md-3">
+                                        <div class="form-group">
+                                            <label for="txtPrecioUnitario">PRECIO UNITARIO</label>
+                                            <input type="number" class="form-control" id="txtPrecioUnitario" placeholder="Precio unitario">
+                                        </div>
+                                    </div>
+                                    <div class="col-md-3">
+                                        <div class="form-group">
+                                            <label for="txtCategoria">CATEGORÍA</label>
+                                            <input type="text" class="form-control" id="txtCategoria" placeholder="Categoría del producto">
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <!-- Botones -->
+                                <div class="row mt-3">
+                                    <div class="col-md-3">
+                                        <button type="button" id="btnInsertar" class="btn btn-spa-blue btn-block">INSERTAR</button>
+                                    </div>
+                                    <div class="col-md-3">
+                                        <button type="button" id="btnActualizar" class="btn btn-spa-blue btn-block">ACTUALIZAR</button>
+                                    </div>
+                                    <div class="col-md-3">
+                                        <button type="button" id="btnEliminar" class="btn btn-spa-blue btn-block">ELIMINAR</button>
+                                    </div>
+                                    <div class="col-md-3">
+                                        <button type="button" id="btnConsultar" class="btn btn-spa-blue btn-block">CONSULTAR</button>
+                                    </div>
+                                </div>
+
+                                <!-- Tabla -->
+                                <div class="row mt-4">
+                                    <div class="col-md-12">
+                                        <table id="tblInventario" class="table table-bordered table-striped">
                                             <thead>
                                                 <tr>
-                                                    <th>Edit</th>
-                                                    <th>Nombre</th>
-                                                    <th>Documento</th>
-                                                    <th>Teléfono</th>
-                                                    <th>Correo Electrónico</th>
-                                                    <th>Tipo Usuario</th>
+                                                    <th>Editar</th>
+                                                    <th>Producto</th>
+                                                    <th>Categoría</th>
+                                                    <th>Cantidad</th>
+                                                    <th>Precio Unitario</th>
                                                 </tr>
                                             </thead>
-                                            <tbody>
-                                                <!-- Aquí se llenan los datos dinámicamente -->
-                                            </tbody>
                                         </table>
                                     </div>
                                 </div>
                             </div>
+
                             <div class="card-footer">
                                 <div id="dvMensaje" class=""></div>
                             </div>
@@ -191,14 +180,13 @@
         </div>
     </section>
 
+    <!-- Scripts -->
+    <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.2/dist/js/bootstrap.bundle.min.js"></script>
     <script src="../Scripts/jquery.min.js"></script>
-    <script src="../Scripts/bootstrap.bundle.min.js"></script>
     <script src="../Scripts/jquery.dataTables.min.js"></script>
     <script src="../Scripts/dataTables.bootstrap4.min.js"></script>
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-    <script src="Scripts/Menu.js"></script>
     <script src="Scripts/Comunes/CRUD.js"></script>
-    <script src="Scripts/Comunes/Comunes.js"></script>
-    <script src="Scripts/Usuario.js"></script>
+    <script src="Scripts/Inventario.js"></script>
 </body>
 </html>

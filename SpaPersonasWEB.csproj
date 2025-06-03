@@ -197,13 +197,12 @@
     <Content Include="Paginas\Pagina2.html" />
     <Content Include="Paginas\PaginaBase.html" />
     <Content Include="Paginas\Proveedor.html" />
-    <Content Include="Paginas\Scripts\Clientes.js" />
     <Content Include="Paginas\Scripts\Comunes\Comunes.js" />
     <Content Include="Paginas\Scripts\Comunes\CRUD.js" />
-    <Content Include="Paginas\Scripts\Empleado.js" />
+    <Content Include="Paginas\Scripts\Inventario.js" />
     <Content Include="Paginas\Scripts\Facturacion.js" />
+    <Content Include="Paginas\Inventario.html" />
     <Content Include="Paginas\Scripts\Login.js" />
-    <Content Include="Paginas\Scripts\Login_1.js" />
     <Content Include="Paginas\Scripts\Menu.js" />
     <Content Include="Paginas\Scripts\MenuLateral.js" />
     <Content Include="Paginas\Scripts\Pagina1.js" />
