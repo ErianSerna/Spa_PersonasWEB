@@ -193,8 +193,8 @@
     <Content Include="Paginas\Login.html" />
     <Content Include="Paginas\Menu.html" />
     <Content Include="Paginas\MenuLateral.html" />
+    <Content Include="Paginas\Index.html" />
     <Content Include="Paginas\Pagina1.html" />
-    <Content Include="Paginas\Pagina2.html" />
     <Content Include="Paginas\PaginaBase.html" />
     <Content Include="Paginas\Proveedor.html" />
     <Content Include="Paginas\Scripts\Comunes\Comunes.js" />

@@ -1,12 +1,31 @@
-﻿var URLBase = "http://localhost:55534/";
+﻿//var URLBase = "http://localhost:55534/";
+var URLBase = "http://spapersonas2025.runasp.net/"; // para el consumo de las apis
 
 async function Ingresar() {
     //var define variables de alcance global para la página
     //let define variables locales de la función
     //const para definir constantes u objetos
-    let URL = URLBase + "api/Login/Ingresar";
     const login = new Login($("#txtUsuario").val(), $("#txtClave").val());
-    const Respuesta = await EjecutarComandoServicioRpta("POST", URL, login);
+    console.log("Usuario: ", $("#txtUsuario").val());
+    console.log("Clave: ", $("#txtClave").val());
+
+    // Validacion campos vacios 
+    if (($("#txtUsuario").val()).trim() == "" || ($("#txtClave").val()).trim() == "") {
+        Swal.fire({
+            icon: 'warning',
+            title: 'Campos Vacíos',
+            text: 'Por favor llenar todos los campos',
+            confirmButtonText: 'Aceptar',
+            confirmButtonColor: '#f39c12', // Color naranja
+        });
+
+        return;
+    }
+
+    const Respuesta = await EjecutarComandoServicioRpta("POST", URLBase, login);
+
+    console.log("Respuesta: ", Respuesta);
+
     if (Respuesta == null || Respuesta == undefined) {
         document.cookie = "token=0;path=/";
         //Hubo un error al procesar el comando
@@ -30,9 +49,11 @@ async function Ingresar() {
             document.cookie = "token=" + Respuesta[0].Token + expires + ";path=/";
             $("#dvMensaje").removeClass("alert alert-danger");
             $("#dvMensaje").addClass("alert alert-success");
-            $("#dvMensaje").html(Respuesta[0].Mensaje);
+            $("#dvMensaje").html("Inicio de Sesión Correcto");
             document.cookie = "Perfil=" + Respuesta[0].Perfil;
             document.cookie = "Usuario=" + Respuesta[0].Usuario;
+
+
             window.location.href = Respuesta[0].PaginaInicio;
         }
     }

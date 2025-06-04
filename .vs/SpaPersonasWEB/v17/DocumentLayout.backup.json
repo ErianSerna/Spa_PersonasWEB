@@ -1,0 +1,119 @@
+{
+  "Version": 1,
+  "WorkspaceRootPath": "C:\\Users\\ASUS\\source\\repos\\Spa_PersonasWEB\\",
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{7FBC32C9-AAC1-40E2-BBAA-661EDBBCC172}|SpaPersonasWEB.csproj|C:\\Users\\ASUS\\source\\repos\\Spa_PersonasWEB\\paginas\\proveedor.html||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{7FBC32C9-AAC1-40E2-BBAA-661EDBBCC172}|SpaPersonasWEB.csproj|solutionrelative:paginas\\proveedor.html||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{7FBC32C9-AAC1-40E2-BBAA-661EDBBCC172}|SpaPersonasWEB.csproj|c:\\users\\asus\\source\\repos\\spa_personasweb\\paginas\\scripts\\usuario.js||{14D17961-FE51-464D-9111-C4AF11D7D99A}",
+      "RelativeMoniker": "D:0:0:{7FBC32C9-AAC1-40E2-BBAA-661EDBBCC172}|SpaPersonasWEB.csproj|solutionrelative:paginas\\scripts\\usuario.js||{14D17961-FE51-464D-9111-C4AF11D7D99A}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{7FBC32C9-AAC1-40E2-BBAA-661EDBBCC172}|SpaPersonasWEB.csproj|C:\\Users\\ASUS\\source\\repos\\Spa_PersonasWEB\\paginas\\scripts\\proveedor.js||{14D17961-FE51-464D-9111-C4AF11D7D99A}",
+      "RelativeMoniker": "D:0:0:{7FBC32C9-AAC1-40E2-BBAA-661EDBBCC172}|SpaPersonasWEB.csproj|solutionrelative:paginas\\scripts\\proveedor.js||{14D17961-FE51-464D-9111-C4AF11D7D99A}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{7FBC32C9-AAC1-40E2-BBAA-661EDBBCC172}|SpaPersonasWEB.csproj|C:\\Users\\ASUS\\source\\repos\\Spa_PersonasWEB\\paginas\\usuario.html||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{7FBC32C9-AAC1-40E2-BBAA-661EDBBCC172}|SpaPersonasWEB.csproj|solutionrelative:paginas\\usuario.html||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{7FBC32C9-AAC1-40E2-BBAA-661EDBBCC172}|SpaPersonasWEB.csproj|C:\\Users\\ASUS\\source\\repos\\Spa_PersonasWEB\\paginas\\scripts\\comunes\\crud.js||{14D17961-FE51-464D-9111-C4AF11D7D99A}",
+      "RelativeMoniker": "D:0:0:{7FBC32C9-AAC1-40E2-BBAA-661EDBBCC172}|SpaPersonasWEB.csproj|solutionrelative:paginas\\scripts\\comunes\\crud.js||{14D17961-FE51-464D-9111-C4AF11D7D99A}"
+    }
+  ],
+  "DocumentGroupContainers": [
+    {
+      "Orientation": 0,
+      "VerticalTabListWidth": 256,
+      "DocumentGroups": [
+        {
+          "DockedWidth": 200,
+          "SelectedChildIndex": 5,
+          "Children": [
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{e1b7d1f8-9b3c-49b1-8f4f-bfc63a88835d}"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "Usuario.html",
+              "DocumentMoniker": "C:\\Users\\ASUS\\source\\repos\\Spa_PersonasWEB\\Paginas\\Usuario.html",
+              "RelativeDocumentMoniker": "Paginas\\Usuario.html",
+              "ToolTip": "C:\\Users\\ASUS\\source\\repos\\Spa_PersonasWEB\\Paginas\\Usuario.html",
+              "RelativeToolTip": "Paginas\\Usuario.html",
+              "ViewState": "AgIAAJ8AAAAAAAAAAAAAAK4AAAA1AAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001512|",
+              "WhenOpened": "2025-06-03T12:02:41.552Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "Usuario.js",
+              "DocumentMoniker": "C:\\Users\\ASUS\\source\\repos\\Spa_PersonasWEB\\Paginas\\Scripts\\Usuario.js",
+              "RelativeDocumentMoniker": "Paginas\\Scripts\\Usuario.js",
+              "ToolTip": "C:\\Users\\ASUS\\source\\repos\\Spa_PersonasWEB\\Paginas\\Scripts\\Usuario.js",
+              "RelativeToolTip": "Paginas\\Scripts\\Usuario.js",
+              "ViewState": "AgIAACwAAAAAAAAAAAAAwAwAAAAMAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001646|",
+              "WhenOpened": "2025-06-03T12:02:44.133Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "CRUD.js",
+              "DocumentMoniker": "C:\\Users\\ASUS\\source\\repos\\Spa_PersonasWEB\\Paginas\\Scripts\\Comunes\\CRUD.js",
+              "RelativeDocumentMoniker": "Paginas\\Scripts\\Comunes\\CRUD.js",
+              "ToolTip": "C:\\Users\\ASUS\\source\\repos\\Spa_PersonasWEB\\Paginas\\Scripts\\Comunes\\CRUD.js",
+              "RelativeToolTip": "Paginas\\Scripts\\Comunes\\CRUD.js",
+              "ViewState": "AgIAAMkAAAAAAAAAAAASwNwAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001646|",
+              "WhenOpened": "2025-06-03T11:57:18.096Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "Proveedor.js",
+              "DocumentMoniker": "C:\\Users\\ASUS\\source\\repos\\Spa_PersonasWEB\\Paginas\\Scripts\\Proveedor.js",
+              "RelativeDocumentMoniker": "Paginas\\Scripts\\Proveedor.js",
+              "ToolTip": "C:\\Users\\ASUS\\source\\repos\\Spa_PersonasWEB\\Paginas\\Scripts\\Proveedor.js",
+              "RelativeToolTip": "Paginas\\Scripts\\Proveedor.js",
+              "ViewState": "AgIAABQAAAAAAAAAAAAAwAkAAAAjAQAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001646|",
+              "WhenOpened": "2025-06-03T11:49:02.428Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "Proveedor.html",
+              "DocumentMoniker": "C:\\Users\\ASUS\\source\\repos\\Spa_PersonasWEB\\Paginas\\Proveedor.html",
+              "RelativeDocumentMoniker": "Paginas\\Proveedor.html",
+              "ToolTip": "C:\\Users\\ASUS\\source\\repos\\Spa_PersonasWEB\\Paginas\\Proveedor.html",
+              "RelativeToolTip": "Paginas\\Proveedor.html",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAMkAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001512|",
+              "WhenOpened": "2025-06-03T11:48:47.662Z",
+              "EditorCaption": ""
+            }
+          ]
+        },
+        {
+          "DockedWidth": 41,
+          "SelectedChildIndex": -1,
+          "Children": [
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{aa2115a1-9712-457b-9047-dbb71ca2cdd2}"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
