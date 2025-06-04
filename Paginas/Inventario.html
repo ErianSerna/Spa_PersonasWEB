@@ -9,6 +9,7 @@
     <link href="Estilos/dataTables.bootstrap4.min.css" rel="stylesheet" />
     <link href="Estilos/adminlte.min.css" rel="stylesheet" />
     <!-- Estilos personalizados para SPA -->
+    <!-- Estilos personalizados para SPA -->
     <style>
         body {
             background: #f7fbfd;
@@ -40,18 +41,10 @@
             letter-spacing: 0.5px;
         }
 
-        .form-control {
-            border-radius: 12px;
-            border: 1px solid #e3f2fd;
-            background: #fff;
-            box-shadow: none;
-            transition: border-color 0.2s;
+        .form-control:focus {
+            border-color: #4fc3f7;
+            box-shadow: 0 0 0 2px #b2ebf2;
         }
-
-            .form-control:focus {
-                border-color: #4fc3f7;
-                box-shadow: 0 0 0 2px #b2ebf2;
-            }
 
         .btn-spa-blue {
             background: linear-gradient(90deg, #4fc3f7 0%, #81d4fa 100%);
@@ -72,6 +65,46 @@
                 box-shadow: 0 4px 16px rgba(80, 180, 255, 0.18);
             }
 
+        .btn-spa-green {
+            background: linear-gradient(90deg, #66bb6a 0%, #a5d6a7 100%);
+            color: #fff;
+            border: none;
+            border-radius: 18px;
+            font-weight: 600;
+            font-size: 1.1rem;
+            font-family: 'Segoe UI', Arial, sans-serif;
+            box-shadow: 0 2px 8px rgba(102, 187, 106, 0.10);
+            transition: background 0.3s, box-shadow 0.3s;
+            margin-bottom: 8px;
+        }
+
+            .btn-spa-green:hover,
+            .btn-spa-green:focus {
+                background: linear-gradient(90deg, #43a047 0%, #81c784 100%);
+                color: #fff;
+                box-shadow: 0 4px 16px rgba(76, 175, 80, 0.18);
+            }
+
+        .btn-spa-red {
+            background: linear-gradient(90deg, #ef5350 0%, #e57373 100%);
+            color: #fff;
+            border: none;
+            border-radius: 18px;
+            font-weight: 600;
+            font-size: 1.1rem;
+            font-family: 'Segoe UI', Arial, sans-serif;
+            box-shadow: 0 2px 8px rgba(239, 83, 80, 0.10);
+            transition: background 0.3s, box-shadow 0.3s;
+            margin-bottom: 8px;
+        }
+
+            .btn-spa-red:hover,
+            .btn-spa-red:focus {
+                background: linear-gradient(90deg, #e53935 0%, #ef5350 100%);
+                color: #fff;
+                box-shadow: 0 4px 16px rgba(229, 57, 53, 0.18);
+            }
+
         .table thead th {
             background: #e3f2fd;
             color: #1976d2;
@@ -88,12 +121,20 @@
             border-top: none;
         }
 
+        /* Nuevo estilo para asegurar que el content-wrapper no tenga desplazamiento */
+        .content-wrapper {
+            margin-left: 0 !important;
+            padding-left: 0 !important;
+            padding-right: 0 !important;
+        }
+
         @media (max-width: 767px) {
             .card-body .row > div {
                 margin-bottom: 12px;
             }
         }
     </style>
+
 </head>
 <body class="hold-transition sidebar-mini">
     <section class="content">
@@ -106,50 +147,69 @@
                         <div class="card-header">
                             <h3 class="card-title">ADMINISTRACIÓN DE INVENTARIO</h3>
                         </div>
+                        <div class="container-fluid px-3 py-4">
+                            <div class="row ">
+                                <input type="text" id="txtBuscar" class="form-control" placeholder="Buscar inventario por ID" oninput="this.value = this.value.replace(/[^0-9]/g, '')">
+                            </div>
+                        </div>
 
                         <form id="frmInventario">
                             <div class="card-body">
                                 <div class="row">
                                     <div class="col-md-3">
                                         <div class="form-group">
-                                            <label for="txtNombreProducto">NOMBRE DEL PRODUCTO</label>
-                                            <input type="text" class="form-control" id="txtNombreProducto" placeholder="Nombre del producto">
+                                            <label for="txtStock">Stock</label>
+                                            <input type="number" class="form-control" id="txtStock" placeholder="Stock del producto">
                                         </div>
                                     </div>
                                     <div class="col-md-3">
                                         <div class="form-group">
-                                            <label for="txtCantidad">CANTIDAD</label>
-                                            <input type="number" class="form-control" id="txtCantidad" placeholder="Cantidad">
+                                            <label for="txtUltimoRestock">Ultimo restock</label>
+                                            <input type="datetime-local" class="form-control" id="txtUltimoRestock" placeholder="Ultimo restock">
                                         </div>
                                     </div>
+
                                     <div class="col-md-3">
                                         <div class="form-group">
-                                            <label for="txtPrecioUnitario">PRECIO UNITARIO</label>
-                                            <input type="number" class="form-control" id="txtPrecioUnitario" placeholder="Precio unitario">
+                                            <label for="ddlProducto">PRODUCTO</label>
+                                            <select class="form-control" id="ddlProducto">
+                                                <option value="">Seleccione un producto</option>
+                                            </select>
                                         </div>
                                     </div>
+
                                     <div class="col-md-3">
                                         <div class="form-group">
-                                            <label for="txtCategoria">CATEGORÍA</label>
-                                            <input type="text" class="form-control" id="txtCategoria" placeholder="Categoría del producto">
+                                            <label for="ddlSede">SEDE</label>
+                                            <select class="form-control" id="ddlSede">
+                                                <option value="">Seleccione una sede</option>
+                                            </select>
                                         </div>
+                                    </div>
+                                </div>
+
+                                <div class="col-md-1">
+                                    <div class="form-group">
+                                        <input type="hidden" class="form-control" id="txtIdInventario">
                                     </div>
                                 </div>
 
                                 <!-- Botones -->
                                 <div class="row mt-3">
                                     <div class="col-md-3">
-                                        <button type="button" id="btnInsertar" class="btn btn-spa-blue btn-block">INSERTAR</button>
+                                        <button type="button" id="btnInsertar" class="btn btn-spa-blue btn-block">Insertar</button>
                                     </div>
                                     <div class="col-md-3">
-                                        <button type="button" id="btnActualizar" class="btn btn-spa-blue btn-block">ACTUALIZAR</button>
+                                        <button type="button" id="btnConsultar" class="btn btn-spa-blue btn-block">Consultar</button>
                                     </div>
-                                    <div class="col-md-3">
-                                        <button type="button" id="btnEliminar" class="btn btn-spa-blue btn-block">ELIMINAR</button>
+                                    <div class="col-md-6">
+                                        <button id="btnConfirmar" class="btn-block btn-lg btn-spa-green" type="button" disabled>Confirmar</button>
                                     </div>
-                                    <div class="col-md-3">
-                                        <button type="button" id="btnConsultar" class="btn btn-spa-blue btn-block">CONSULTAR</button>
+
+                                    <div class="col-md-6">
+                                        <button id="btnCancelar" class="btn-block btn-lg btn-spa-red" type="button" disabled>Cancelar</button>
                                     </div>
+
                                 </div>
 
                                 <!-- Tabla -->
@@ -158,17 +218,34 @@
                                         <table id="tblInventario" class="table table-bordered table-striped">
                                             <thead>
                                                 <tr>
-                                                    <th>Editar</th>
+                                                    <th>Id</th>
+                                                    <th>Stock</th>
+                                                    <th>UltimoRestock</th>
                                                     <th>Producto</th>
-                                                    <th>Categoría</th>
-                                                    <th>Cantidad</th>
-                                                    <th>Precio Unitario</th>
+                                                    <th>Sede</th>
+                                                    <th>Acciones</th>
                                                 </tr>
                                             </thead>
+
+                                            <tbody id="tblInventarioBody">
+                                                <tr>
+                                                    <th></th>
+                                                    <th></th>
+                                                    <th></th>
+                                                    <th></th>
+                                                    <th></th>
+                                                    <th></th>
+                                                </tr>
+                                                <!-- Aqui se llenan los datos dinamicamente -->
+                                            </tbody>
+
+
                                         </table>
                                     </div>
                                 </div>
                             </div>
+
+
 
                             <div class="card-footer">
                                 <div id="dvMensaje" class=""></div>
@@ -188,5 +265,8 @@
     <script src="../Scripts/dataTables.bootstrap4.min.js"></script>
     <script src="Scripts/Comunes/CRUD.js"></script>
     <script src="Scripts/Inventario.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>}
+    <script src="Estilos/adminlte.min.js"></script> <!-- AdminLTE App JS -->
+
 </body>
 </html>
