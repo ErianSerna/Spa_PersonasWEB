@@ -3,214 +3,222 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>ADMINISTRACIÓN DE SERVICO</title>
+    <title>Administracion de Servicios por Sede</title>
 
+    <!-- Google Font: Source Sans Pro -->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
+
+    <!-- Rutas de Estilos: Asegurate que estas rutas sean correctas segun tu estructura de carpetas -->
+    <!-- Si este HTML esta en 'Paginas/' y 'Estilos/' esta en la raiz del proyecto, usa '../Estilos/' -->
+    <!-- Si 'Estilos/' esta en la misma carpeta que este HTML, usa 'Estilos/' -->
     <link href="Estilos/css/all.min.css" rel="stylesheet" />
-    <!-- DataTables -->
     <link href="Estilos/dataTables.bootstrap4.min.css" rel="stylesheet" />
-    <!-- Theme style -->
     <link href="Estilos/adminlte.min.css" rel="stylesheet" />
+    <link href="Estilos/select2.min.css" rel="stylesheet" />
+    <link href="Estilos/select2-bootstrap4.min.css" rel="stylesheet" />
+
+    <!-- Estilos personalizados para SPA -->
+    <style>
+        body {
+            background: #f7fbfd;
+            font-family: 'Segoe UI', Arial, sans-serif;
+        }
+
+        .card-primary {
+            border-radius: 18px;
+            box-shadow: 0 4px 24px rgba(80, 180, 255, 0.10);
+            border: none;
+        }
+
+        .card-header {
+            background: linear-gradient(90deg, #4fc3f7 0%, #b2ebf2 100%);
+            border-radius: 18px 18px 0 0;
+            color: #fff;
+            text-align: center;
+            letter-spacing: 1px;
+        }
+
+        .card-title {
+            font-size: 1.5rem;
+            font-weight: 600;
+        }
+
+        .form-group label {
+            color: #1976d2;
+            font-weight: 500;
+            letter-spacing: 0.5px;
+        }
+
+        .form-control:focus {
+            border-color: #4fc3f7;
+            box-shadow: 0 0 0 2px #b2ebf2;
+        }
+
+        .btn-spa-blue {
+            background: linear-gradient(90deg, #4fc3f7 0%, #81d4fa 100%);
+            color: #fff;
+            border: none;
+            border-radius: 18px;
+            font-weight: 600;
+            font-size: 1.1rem;
+            font-family: 'Segoe UI', Arial, sans-serif;
+            box-shadow: 0 2px 8px rgba(80, 180, 255, 0.10);
+            transition: background 0.3s, box-shadow 0.3s;
+            margin-bottom: 8px;
+        }
+
+            .btn-spa-blue:hover, .btn-spa-blue:focus {
+                background: linear-gradient(90deg, #29b6f6 0%, #4fc3f7 100%);
+                color: #fff;
+                box-shadow: 0 4px 16px rgba(80, 180, 255, 0.18);
+            }
+
+        .table thead th {
+            background: #e3f2fd;
+            color: #1976d2;
+            border-bottom: 2px solid #b2ebf2;
+        }
+
+        .table-bordered {
+            border-radius: 12px;
+            overflow: hidden;
+        }
+
+        .card-footer {
+            background: transparent;
+            border-top: none;
+        }
+
+        /* Nuevo estilo para asegurar que el content-wrapper no tenga desplazamiento */
+        .content-wrapper {
+            margin-left: 0 !important;
+            padding-left: 0 !important;
+            padding-right: 0 !important;
+        }
+
+        @media (max-width: 767px) {
+            .card-body .row > div {
+                margin-bottom: 12px;
+            }
+        }
+    </style>
 </head>
-<body class="hold-transition sidebar-mini">
-    <section class="content">
-        <div class="container-fluid">
-            <div class="row">
-                <div class="col-md-12" id="dvMenu">
-                </div>
-                <!-- left column -->
-                <div class="col-md-12">
-                    <!-- general form elements -->
-                    <div class="card card-primary">
-                        <div class="card-header">
-                            <h3 class="card-title">ADMINISTRACIÓN DE CLIENTES</h3>
-                        </div>
-                        <!-- /.card-header -->
-                        <!-- form start -->
-                        <form id="frmRegistraCliente">
-                            <div class="card-body">
-                                <div class="row">
-                                    <div class="col-md-3">
-                                        <div class="form-group">
-                                            <label for="txtDocumento">DOCUMENTO</label>
-                                            <input type="text" class="form-control" id="txtDocumento" placeholder="Documento del cliente">
-                                        </div>
-                                    </div>
-                                    <div class="col-md-3">
-                                        <div class="form-group">
-                                            <label for="txtNombre">NOMBRE</label>
-                                            <input type="text" class="form-control" id="txtNombre" placeholder="Nombre del cliente">
-                                        </div>
-                                    </div>
-                                    <div class="col-md-3">
-                                        <div class="form-group">
-                                            <label for="txtPrimerApellido">PRIMER APELLIDO</label>
-                                            <input type="text" class="form-control" id="txtPrimerApellido" placeholder="Primer apellido del cliente">
-                                        </div>
-                                    </div>
-                                    <div class="col-md-3">
-                                        <div class="form-group">
-                                            <label for="txtSegundoApellido">SEGUNDO APELLIDO</label>
-                                            <input type="text" class="form-control" id="txtSegundoApellido" placeholder="Segundo apellido del cliente">
-                                        </div>
-                                    </div>
+<body class="hold-transition layout-top-nav">
+    <!-- REQUIRED WRAPPER -->
+    <div class="wrapper">
+
+        <!-- Navbar (Top navigation bar) -->
+        <div id="dvMenu">
+            <!-- El contenido del menu (el <nav> de Menu.html) se cargara aqui -->
+            <!-- Asegurate que la ruta a Menu.html sea correcta. Ej: "../Paginas/Menu.html" o "Menu.html" -->
+        </div>
+        <!-- /.navbar -->
+        <!-- Content Wrapper. Contains page content -->
+        <div class="content-wrapper">
+            <!-- Content Header (Page header) -->
+            <div class="content-header">
+                <div class="container-fluid">
+                    <div class="row mb-2">
+                        <div class="col-sm-6">
+                            <h1 class="m-0">Administracion de Servicios por Sede</h1>
+                        </div><!-- /.col -->
+                    </div><!-- /.row -->
+                </div><!-- /.container-fluid -->
+            </div>
+            <!-- /.content-header -->
+            <!-- Main content -->
+            <section class="content">
+                <div class="container py-4">
+                    <div class="row justify-content-center">
+                        <div class="col-lg-10 col-md-12">
+                            <div class="card card-primary">
+                                <div class="card-header">
+                                    <h3 class="card-title">Gestion de Servicios por Sede</h3>
                                 </div>
-                                <div class="row">
-                                    <div class="col-md-4">
-                                        <div class="form-group">
-                                            <label for="txtDireccion">DIRECCIÓN</label>
-                                            <input type="text" class="form-control" id="txtDireccion" placeholder="Dirección">
-                                        </div>
-                                    </div>
-                                    <div class="col-md-4">
-                                        <div class="form-group">
-                                            <label for="txtFechaNacimiento">FECHA NACIMIENTO</label>
-                                            <input type="date" class="form-control" id="txtFechaNacimiento" placeholder="Valor Unitario">
-                                        </div>
-                                    </div>
-                                    <div class="col-md-4">
-                                        <div class="form-group">
-                                            <label for="txtEmail">EMAIL</label>
-                                            <input type="text" class="form-control" id="txtEmail" placeholder="Correo electrónico">
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="row">
-                                    <div class="col-md-3">
-                                        <div class="form-group">
-                                            <button id="bntInsertar" class="btn-block btn-lg btn-primary">INSERTAR</button>
-                                        </div>
-                                    </div>
-                                    <div class="col-md-3">
-                                        <div class="form-group">
-                                            <button id="btnActualizar" class="btn-block btn-lg btn-primary">ACTUALIZAR</button>
-                                        </div>
-                                    </div>
-                                    <div class="col-md-3">
-                                        <div class="form-group">
-                                            <button id="btnEliminar" class="btn-block btn-lg btn-primary">ELIMINAR</button>
-                                        </div>
-                                    </div>
-                                    <div class="col-md-3">
-                                        <div class="form-group">
-                                            <button type="button" id="btnTelefonos" class="btn-block btn-lg btn-primary" data-toggle="modal" data-target="#modTelefonos" onclick="LlenarTablaTelefonos()">EDITAR TELEFONOS</button>
-                                            <!-- Modal -->
-                                            <div class="modal fade" id="modTelefonos" tabindex="-1" role="dialog" aria-labelledby="modTelefonosLabel" aria-hidden="true">
-                                                <div class="modal-dialog modal-lg modal-dialog-centered" role="document">
-                                                    <div class="modal-content">
-                                                        <div class="modal-header">
-                                                            <h5 class="modal-title" id="modTelefonosLabel">GESTIÓN DE TELÉFONOS</h5>
-                                                            <button type="button" class="close" data-dismiss="modal" aria-label="Close" onclick="">
-                                                                <span aria-hidden="true">&times;</span>
-                                                            </button>
-                                                        </div>
-                                                        <div class="modal-body">
-                                                            <div class="row">
-                                                                <div class="col-md-6">
-                                                                    <div class="form-group">
-                                                                        <input type="text" class="form-control" id="txtCodigo" placeholder="Código teléfono" hidden>
-                                                                        <label for="cboTipoTelefono">Tipo teléfono</label>
-                                                                        <select id="cboTipoTelefono" class="form-control select2" style="width: 100%;
-}
-/* END EXTERNAL SOURCE */
-/* BEGIN EXTERNAL SOURCE */
-select {
-width: 100%;">
-                                                                            <option selected="selected" value="0">Seleccione el tipo de teléfono</option>
-                                                                        </select>
-                                                                    </div>
-                                                                </div>
-                                                                <div class="col-md-6">
-                                                                    <div class="form-group">
-                                                                        <label for="txtNumero">NÚMERO</label>
-                                                                        <input type="text" class="form-control" id="txtNumero" placeholder="Número de teléfono">
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-                                                            <div class="row">
-                                                                <div class="col-md-3">
-                                                                    <div class="form-group">
-                                                                        <button id="bntInsertarTel" class="btn-block btn-lg btn-secondary" onclick="">INSERTAR</button>
-                                                                    </div>
-                                                                </div>
-                                                                <div class="col-md-3">
-                                                                    <div class="form-group">
-                                                                        <button id="btnActualizarTel" class="btn-block btn-lg btn-secondary" onclick="">ACTUALIZAR</button>
-                                                                    </div>
-                                                                </div>
-                                                                <div class="col-md-3">
-                                                                    <div class="form-group">
-                                                                        <button id="btnEliminarTel" class="btn-block btn-lg btn-secondary" onclick="">ELIMINAR</button>
-                                                                    </div>
-                                                                </div>
-                                                                <div class="col-md-3">
-                                                                    <div class="form-group">
-                                                                        <button id="btnCerrarModal" class="btn-block btn-lg btn-secondary" data-dismiss="modal" onclick="">CERRAR</button>
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-                                                            <div class="row">
-                                                                <div class="col-md-12">
-                                                                    <table id="tblTelefonos" class="table table-bordered table-striped">
-                                                                        <thead>
-                                                                            <tr>
-                                                                                <th>Editar</th>
-                                                                                <th>Tipo Teléfono</th>
-                                                                                <th>Número</th>
-                                                                            </tr>
-                                                                        </thead>
-                                                                    </table>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                        <div class="modal-footer">
-                                                            <div id="dvMensajeTel" class=""></div>
-                                                        </div>
-                                                    </div>
+                                <form id="frmServicioSede">
+                                    <div class="card-body">
+                                        <div class="row mb-2">
+                                            <div class="col-md-6">
+                                                <div class="form-group">
+                                                    <label for="cboSede">Sede</label>
+                                                    <select id="cboSede" class="form-control select2" style="width: 100%;">
+                                                        <option selected="selected" value="0">Seleccione una sede</option>
+                                                    </select>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <div class="form-group">
+                                                    <label for="cboServicio">Servicio</label>
+                                                    <select id="cboServicio" class="form-control select2" style="width: 100%;">
+                                                        <option selected="selected" value="0">Seleccione un servicio</option>
+                                                    </select>
                                                 </div>
                                             </div>
                                         </div>
+                                        <div class="row mb-4" style="margin-top: 15px">
+                                            <div class="col-md-3">
+                                                <button id="btnInsertar" class="btn-block btn-lg btn-spa-blue" type="button">Insertar</button>
+                                            </div>
+                                            <div class="col-md-3">
+                                                <button id="btnLimpiar" class="btn-block btn-lg btn-spa-blue" type="button">Limpiar Campos</button>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-12">
+                                                <table id="tblServicioSede" class="table table-bordered table-striped">
+                                                    <thead>
+                                                        <tr>
+                                                            <th>Id Sede</th>
+                                                            <th>Id Servicio</th>
+                                                            <th>Acciones</th> <!-- Columna para botones de editar/eliminar en la tabla -->
+                                                        </tr>
+                                                    </thead>
+                                                    <tbody>
+                                                        <!-- Aqui se llenan los datos de las asociaciones dinamicamente -->
+                                                    </tbody>
+                                                </table>
+                                            </div>
+                                        </div>
                                     </div>
-                                </div>
-                                <div class="row">
-                                    <div class="col-md-12">
-                                        <table id="tblClientes" class="table table-bordered table-striped">
-                                            <thead>
-                                                <tr>
-                                                    <th>Edit</th>
-                                                    <th>NroTelefonos</th>
-                                                    <th>Documento</th>
-                                                    <th>Cliente</th>
-                                                    <th>Direccion</th>
-                                                    <th>Email</th>
-                                                    <th>Fecha nacimiento</th>
-                                                </tr>
-                                            </thead>
-                                        </table>
+                                    <div class="card-footer">
+                                        <div id="dvMensaje" class=""></div>
                                     </div>
-                                </div>
-
+                                </form>
                             </div>
-                            <!-- /.card-body -->
-                            <div class="card-footer">
-                                <div id="dvMensaje" class=""></div>
-                            </div>
-                        </form>
+                        </div>
                     </div>
                 </div>
-            </div>
+            </section>
+            <!-- /.content -->
         </div>
-    </section>
-    <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+        <!-- /.content-wrapper -->
+        <!-- Control Sidebar (Opcional - si lo tienes) -->
+        <aside class="control-sidebar control-sidebar-dark">
+            <!-- El contenido del sidebar de control va aqui -->
+        </aside>
+        <!-- /.control-sidebar -->
+        <!-- Main Footer (Opcional - si lo tienes) -->
+        <footer class="main-footer">
+            <strong>Copyright &copy; 2024 Your Project.</strong> All rights reserved.
+        </footer>
+    </div>
+    <!-- ./wrapper -->
+    <!-- SCRIPTS -->
+    <!-- Rutas de Scripts: Asegurate que estas rutas sean correctas segun tu estructura de carpetas -->
+    <!-- Si este HTML esta en 'Paginas/' y 'Scripts/' esta en la raiz del proyecto, usa '../Scripts/' -->
+    <!-- Si 'Scripts/' esta en la misma carpeta que este HTML, usa 'Scripts/' -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.2/dist/js/bootstrap.bundle.min.js"></script>
-    <script src="../Scripts/jquery.min.js"></script>
-    <!--Tables-->
+    <script src="Estilos/adminlte.min.js"></script> <!-- Esta ruta puede necesitar ajuste si 'Estilos' no esta en la misma carpeta -->
     <script src="../Scripts/jquery.dataTables.min.js"></script>
     <script src="../Scripts/dataTables.bootstrap4.min.js"></script>
-    <!--Archivos comunes-->
+    <script src="Scripts/select2.full.min.js"></script>
+
+    <!-- Tus scripts personalizados -->
+    <!-- Asegurate que la ruta a Menu.js, CRUD.js, Comunes.js y ServicioSede.js sea correcta -->
     <script src="Scripts/Menu.js"></script>
     <script src="Scripts/Comunes/CRUD.js"></script>
     <script src="Scripts/Comunes/Comunes.js"></script>
-    <script src="Scripts/Cliente_Telefono.js"></script>
-    <!-- /.card -->
+    <script src="Scripts/ServicioSede.js"></script> <!-- Script especifico para esta pagina -->
 </body>
-</html></html>
+</html>
