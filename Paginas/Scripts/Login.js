@@ -22,7 +22,7 @@ async function Ingresar() {
         return;
     }
 
-    const Respuesta = await EjecutarComandoServicioRpta("POST", URLBase, login);
+    const Respuesta = await EjecutarComandoServicioRpta("POST", URLBase+"api/Login/Ingresar", login);
 
     console.log("Respuesta: ", Respuesta);
 

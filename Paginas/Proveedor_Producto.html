@@ -3,33 +3,35 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Administracion de Usuarios - SPA</title>
+    <title>ADMINISTRACION DE PROVEEDOR-PRODUCTO</title>
 
     <!-- Google Font: Source Sans Pro -->
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
     <link href="Estilos/css/all.min.css" rel="stylesheet" />
     <link href="Estilos/dataTables.bootstrap4.min.css" rel="stylesheet" />
     <link href="Estilos/adminlte.min.css" rel="stylesheet" />
+    <link href="Estilos/select2.min.css" rel="stylesheet" />
+    <link href="Estilos/select2-bootstrap4.min.css" rel="stylesheet" />
 
-    <!-- Estilos personalizados para SPA -->
     <style>
         body {
-            background: #f7fbfd;
+            background: #f7fbfd; /* Fondo suave */
             font-family: 'Segoe UI', Arial, sans-serif;
         }
 
         .card-primary {
-            border-radius: 18px;
-            box-shadow: 0 4px 24px rgba(80, 180, 255, 0.10);
+            border-radius: 18px; /* Bordes redondeados para la tarjeta */
+            box-shadow: 0 4px 24px rgba(80, 180, 255, 0.10); /* Sombra sutil */
             border: none;
         }
 
         .card-header {
-            background: linear-gradient(90deg, #4fc3f7 0%, #b2ebf2 100%);
-            border-radius: 18px 18px 0 0;
+            background: linear-gradient(90deg, #4fc3f7 0%, #b2ebf2 100%); /* Degradado para el encabezado */
+            border-radius: 18px 18px 0 0; /* Bordes superiores redondeados */
             color: #fff;
             text-align: center;
             letter-spacing: 1px;
+            padding: 1rem 1.25rem; /* Ajuste de padding */
         }
 
         .card-title {
@@ -38,16 +40,30 @@
         }
 
         .form-group label {
-            color: #1976d2;
+            color: #1976d2; /* Color azul para las etiquetas */
             font-weight: 500;
             letter-spacing: 0.5px;
         }
 
-        .form-control:focus {
-            border-color: #4fc3f7;
-            box-shadow: 0 0 0 2px #b2ebf2;
+            .form-group label span { /* Estilo para el asterisco de requerido */
+                color: #dc3545; /* Rojo de Bootstrap para indicar requerido */
+                margin-left: 3px;
+            }
+
+        .form-control {
+            border-radius: 12px; /* Bordes redondeados para inputs */
+            border: 1px solid #e3f2fd; /* Borde mas suave */
+            background: #fff;
+            box-shadow: none;
+            transition: border-color 0.2s, box-shadow 0.2s;
         }
 
+            .form-control:focus {
+                border-color: #4fc3f7; /* Borde azul al enfocar */
+                box-shadow: 0 0 0 2px rgba(178, 235, 242, 0.5); /* Sombra de enfoque sutil */
+            }
+
+        /* Estilo para los botones principales (Insertar, Actualizar, Eliminar) */
         .btn-spa-blue {
             background: linear-gradient(90deg, #4fc3f7 0%, #81d4fa 100%);
             color: #fff;
@@ -58,7 +74,7 @@
             font-family: 'Segoe UI', Arial, sans-serif;
             box-shadow: 0 2px 8px rgba(80, 180, 255, 0.10);
             transition: background 0.3s, box-shadow 0.3s;
-            margin-bottom: 8px;
+            margin-bottom: 8px; /* Espaciado entre botones */
         }
 
             .btn-spa-blue:hover, .btn-spa-blue:focus {
@@ -67,15 +83,46 @@
                 box-shadow: 0 4px 16px rgba(80, 180, 255, 0.18);
             }
 
+        /* Estilo para el boton "Limpiar Campos" (gris suave) */
+        .btn-spa-grey {
+            background: linear-gradient(90deg, #bdbdbd 0%, #e0e0e0 100%);
+            color: #424242;
+            border: none;
+            border-radius: 18px;
+            font-weight: 600;
+            font-size: 1.1rem;
+            font-family: 'Segoe UI', Arial, sans-serif;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+            transition: background 0.3s, box-shadow 0.3s;
+            margin-bottom: 8px;
+        }
+
+            .btn-spa-grey:hover, .btn-spa-grey:focus {
+                background: linear-gradient(90deg, #9e9e9e 0%, #bdbdbd 100%);
+                color: #fff;
+                box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1);
+            }
+
+        /* Estilo para la tabla */
         .table thead th {
-            background: #e3f2fd;
-            color: #1976d2;
-            border-bottom: 2px solid #b2ebf2;
+            background: #e3f2fd; /* Fondo del encabezado de tabla */
+            color: #1976d2; /* Color de texto del encabezado */
+            border-bottom: 2px solid #b2ebf2; /* Borde inferior del encabezado */
+            font-weight: 600;
         }
 
         .table-bordered {
-            border-radius: 12px;
-            overflow: hidden;
+            border-radius: 12px; /* Bordes redondeados para la tabla */
+            overflow: hidden; /* Importante para que los bordes redondeados se vean bien con el contenido */
+            border: 1px solid #e3f2fd; /* Borde general de la tabla */
+        }
+
+        .table-striped tbody tr:nth-of-type(odd) {
+            background-color: rgba(0, 0, 0, 0.03); /* Franjas para la tabla */
+        }
+
+        .table td, .table th {
+            border-color: #e3f2fd; /* Color de los bordes de las celdas */
         }
 
         .card-footer {
@@ -90,9 +137,15 @@
             padding-right: 0 !important;
         }
 
+        /* Media queries para responsividad */
         @media (max-width: 767px) {
             .card-body .row > div {
                 margin-bottom: 12px;
+            }
+
+            .btn-spa-blue, .btn-spa-grey {
+                font-size: 1rem; /* Un poco mas pequeno en moviles */
+                padding: .8rem 1rem;
             }
         }
     </style>
@@ -114,7 +167,7 @@
                 <div class="container-fluid">
                     <div class="row mb-2">
                         <div class="col-sm-6">
-                            <h1 class="m-0">Administracion de Usuarios</h1>
+                            <h1 class="m-0">Administracion de Asociaciones Proveedor-Producto</h1>
                         </div><!-- /.col -->
                     </div><!-- /.row -->
                 </div><!-- /.container-fluid -->
@@ -128,88 +181,69 @@
                         <div class="col-lg-10 col-md-12">
                             <div class="card card-primary">
                                 <div class="card-header">
-                                    <h3 class="card-title">Administracion de Usuarios</h3>
+                                    <h3 class="card-title">ADMINISTRACION DE ASOCIACIONES PROVEEDOR-PRODUCTO</h3>
                                 </div>
-                                <form id="frmRegistraCliente">
+                                <form id="frmProveedorProducto">
                                     <div class="card-body">
                                         <div class="row mb-2">
-                                            <div class="col-md-4">
+                                            <div class="col-md-6">
                                                 <div class="form-group">
-                                                    <label for="txtNombreUsuario">Nombre <span>*</span></label>
-                                                    <input type="text" class="form-control" id="txtNombreUsuario" placeholder="Nombre del usuario">
+                                                    <input type="hidden" class="form-control" id="txtIdProveedorProducto">
+                                                    <label for="cboProveedor">PROVEEDOR <span>*</span></label>
+                                                    <select id="cboProveedor" class="form-control select2" style="width: 100%;">
+                                                        <option selected="selected" value="0">Seleccione un proveedor</option>
+                                                    </select>
                                                 </div>
                                             </div>
-                                            <div class="col-md-4">
+                                            <div class="col-md-6">
                                                 <div class="form-group">
-                                                    <label for="txtDocumentoUsuario">Documento <span>*</span></label>
-                                                    <input type="text" class="form-control" id="txtDocumentoUsuario" placeholder="Documento del usuario" oninput="this.value = this.value.replace(/[^0-9]/g, '')">
-                                                </div>
-                                            </div>
-                                            <div class="col-md-4">
-                                                <div class="form-group">
-                                                    <label for="txtTelefonoUsuario">Telefono <span>*</span></label>
-                                                    <input type="text" class="form-control" id="txtTelefonoUsuario" placeholder="Telefono del usuario" oninput="this.value = this.value.replace(/[^0-9]/g, '')">
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="row mb-3" style="display: flex; justify-content:space-evenly">
-                                            <div class="col-md-3">
-                                                <div class="form-group">
-                                                    <label for="txtCorreoUsuario">Correo Electronico <span>*</span></label>
-                                                    <input type="text" class="form-control" id="txtCorreoUsuario" placeholder="Correo Electronico del usuario">
-                                                </div>
-                                            </div>
-                                            <div class="col-md-3">
-                                                <div class="form-group">
-                                                    <label for="txtTipoUsuario">Tipo Usuario <span>*</span></label>
-                                                    <select class="form-control" id="txtTipoUsuario" required>
-                                                        <option value="" selected disabled>Seleccione una opcion</option>
-                                                        <!--Llenado dinamico con js-->
+                                                    <label for="cboProducto">PRODUCTO <span>*</span></label>
+                                                    <select id="cboProducto" class="form-control select2" style="width: 100%;">
+                                                        <option selected="selected" value="0">Seleccione un producto</option>
                                                     </select>
                                                 </div>
                                             </div>
                                         </div>
                                         <div class="row mb-4" style="margin-top: 15px">
                                             <div class="col-md-3">
-                                                <button id="bntInsertar" class="btn-block btn-lg btn-spa-blue" type="button">Insertar</button>
+                                                <div class="form-group">
+                                                    <button type="button" id="btnInsertar" class="btn-block btn-lg btn-spa-blue">INSERTAR ASOCIACION</button>
+                                                </div>
                                             </div>
                                             <div class="col-md-3">
-                                                <button id="btnActualizar" class="btn-block btn-lg btn-spa-blue" type="button">Actualizar</button>
+                                                <div class="form-group">
+                                                    <button type="button" id="btnActualizar" class="btn-block btn-lg btn-spa-blue">ACTUALIZAR ASOCIACION</button>
+                                                </div>
                                             </div>
                                             <div class="col-md-3">
-                                                <button id="btnEliminar" class="btn-block btn-lg btn-spa-blue" type="button">Eliminar</button>
+                                                <div class="form-group">
+                                                    <button type="button" id="btnEliminar" class="btn-block btn-lg btn-spa-blue">ELIMINAR ASOCIACION</button>
+                                                </div>
                                             </div>
                                             <div class="col-md-3">
-                                                <button id="btnConsultar" class="btn-block btn-lg btn-spa-blue" type="button">Consultar</button>
+                                                <div class="form-group">
+                                                    <button type="button" id="btnLimpiar" class="btn-block btn-lg btn-spa-grey">LIMPIAR CAMPOS</button>
+                                                </div>
                                             </div>
                                         </div>
+                                        <hr>
                                         <div class="row">
                                             <div class="col-12">
-                                                <table id="tblUsuario" class="table table-bordered table-striped">
+                                                <table id="tblProveedorProducto" class="table table-bordered table-striped">
                                                     <thead>
                                                         <tr>
-                                                            <th>Id</th>
-                                                            <th>Nombre</th>
-                                                            <th>Documento</th>
-                                                            <th>Telefono</th>
-                                                            <th>Correo Electronico</th>
-                                                            <th>Tipo Usuario</th>
+                                                            <th>Editar</th>
+                                                            <th style="display:none;">Id</th>
+                                                            <th>Proveedor</th>
+                                                            <th>Producto</th>
                                                         </tr>
                                                     </thead>
-                                                    <tbody id="tblUsuarioBody">
-                                                        <tr>
-                                                            <th></th>
-                                                            <th></th>
-                                                            <th></th>
-                                                            <th></th>
-                                                            <th></th>
-                                                            <th></th>
-                                                        </tr>
-                                                        <!-- Aqui se llenan los datos dinamicamente -->
+                                                    <tbody>
                                                     </tbody>
                                                 </table>
                                             </div>
                                         </div>
+
                                     </div>
                                     <div class="card-footer">
                                         <div id="dvMensaje" class=""></div>
@@ -235,16 +269,20 @@
     </div>
     <!-- ./wrapper -->
     <!-- SCRIPTS -->
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script> <!-- Version de jQuery actualizada y unica -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script> <!-- Version de jQuery actualizada -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.2/dist/js/bootstrap.bundle.min.js"></script>
-    <script src="Estilos/adminlte.min.js"></script> <!-- AdminLTE App JS -->
     <script src="../Scripts/jquery.dataTables.min.js"></script>
     <script src="../Scripts/dataTables.bootstrap4.min.js"></script>
+
+    <script src="Scripts/select2.full.min.js"></script>
+    <!-- AdminLTE App JS (se a�ade para consistencia) -->
+    <script src="Estilos/adminlte.min.js"></script>
 
     <!-- Tus scripts personalizados -->
     <script src="Scripts/Menu.js"></script>
     <script src="Scripts/Comunes/CRUD.js"></script>
     <script src="Scripts/Comunes/Comunes.js"></script>
-    <script src="Scripts/Usuario.js"></script>
+    <script src="Scripts/Proveedor_Producto.js"></script>
+
 </body>
 </html>
