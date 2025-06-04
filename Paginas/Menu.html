@@ -1,52 +1,78 @@
-﻿<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-    <a class="navbar-brand" href="#">PD</a>
-    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+﻿<!-- Incluye FontAwesome y Bootstrap CSS en tu layout principal si no están ya -->
+<nav class="navbar navbar-expand-lg navbar-light spa-navbar">
+    <a class="navbar-brand font-weight-bold" href="#" style="font-size:1.5rem;">
+        <i class="fas fa-spa mr-2" style="color:#7ec6c8;"></i>Spa Personas
+    </a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSpa" aria-controls="navbarSpa" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
     </button>
 
-    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+    <div class="collapse navbar-collapse" id="navbarSpa">
         <ul class="navbar-nav mr-auto">
             <li class="nav-item active">
-                <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
+                <a class="nav-link" href="Index.html"><i class="fas fa-home mr-1"></i>Home <span class="sr-only">(current)</span></a>
             </li>
-            <li class="nav-item dropdown">
-                <a class="nav-link dropdown-toggle" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                    Páginas básicas
-                </a>
-                <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                    <a class="dropdown-item" href="Pagina1.html">Pagina 1</a>
-                    <a class="dropdown-item" href="Pagina2.html">Pagina 2</a>
-                    <a class="dropdown-item" href="PaginaBase.html">Pagina Base</a>
-                </div>
+
+            <li class="nav-item active">
+                <a class="nav-link" href="Usuario.html"><i class="fas fa-user-friends mr-1"></i>Usuarios <span class="sr-only">(current)</span></a>
             </li>
-            <li class="nav-item dropdown">
-                <a class="nav-link dropdown-toggle" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                    CRUD básico
-                </a>
-                <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                    <a class="dropdown-item" href="Empleado.html">Empleados</a>
-                    <a class="dropdown-item" href="Clientes.html">Clientes</a>
-                </div>
+            <li class="nav-item active">
+                <a class="nav-link" href="Producto.html"><i class="fas fa-leaf mr-1"></i>Productos<span class="sr-only">(current)</span></a>
             </li>
-            <li class="nav-item dropdown">
-                <a class="nav-link dropdown-toggle" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                    CRUD con objetos gráficos
-                </a>
-                <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                    <a class="dropdown-item" href="Producto.html">Productos</a>
-                    <a class="dropdown-item" href="Usuario.html">Usuario</a>
-                </div>
+            <li class="nav-item active">
+                <a class="nav-link" href="Inventario.html"><i class="fas fa-cube mr-1"></i>Inventarios<span class="sr-only">(current)</span></a>
             </li>
-            <li class="nav-item dropdown">
-                <a class="nav-link dropdown-toggle" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                    Procesos
-                </a>
-                <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                    <a class="dropdown-item" href="Facturacion.html">Facturación</a>
-                    <a class="dropdown-item" href="Cliente_Telefono.html">Cliente - Modal</a>
-                    <a class="dropdown-item" href="Servicio_Sede.html">Servicios - Sede</a>
-                </div>
+            <li class="nav-item active">
+                <a class="nav-link" href="Servicio_Sede.html"><i class="fas fa-seedling mr-1"></i>Servicios<span class="sr-only">(current)</span></a>
             </li>
         </ul>
     </div>
 </nav>
+
+<style>
+    body {
+        background: linear-gradient(135deg, #e0f7fa 0%, #f8fafc 100%);
+    }
+
+    .spa-navbar {
+        background: rgba(255,255,255,0.95) !important;
+        box-shadow: 0 4px 16px rgba(126,198,200,0.10);
+        border-radius: 0 0 18px 18px;
+        border: none;
+        padding: 0.5rem 2rem;
+    }
+
+        .spa-navbar .navbar-brand {
+            color: #5a8d8a !important;
+            letter-spacing: 1px;
+        }
+
+        .spa-navbar .nav-link, .spa-navbar .dropdown-item {
+            color: #5a8d8a !important;
+            font-weight: 500;
+            transition: background 0.2s, color 0.2s;
+        }
+
+            .spa-navbar .nav-link:hover, .spa-navbar .dropdown-item:hover {
+                background: #e0f7fa !important;
+                color: #388e8e !important;
+                border-radius: 8px;
+            }
+
+        .spa-navbar .dropdown-menu {
+            border-radius: 12px;
+            border: none;
+            box-shadow: 0 2px 8px rgba(126,198,200,0.10);
+            background: #f8fafc;
+        }
+
+        .spa-navbar .dropdown-item {
+            padding-left: 2rem;
+        }
+
+        .spa-navbar .active > .nav-link,
+        .spa-navbar .nav-link.active {
+            color: #388e8e !important;
+            font-weight: 700;
+        }
+</style>

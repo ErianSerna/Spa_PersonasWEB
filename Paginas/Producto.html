@@ -3,7 +3,7 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Administracion de Usuarios - SPA</title>
+    <title>Administracion de Productos - SPA</title>
 
     <!-- Google Font: Source Sans Pro -->
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
@@ -141,6 +141,7 @@
     <!-- REQUIRED WRAPPER -->
     <div class="wrapper">
         <div id="dvMenu">
+            <!-- El contenido del menu (el <nav> de Menu.html) se cargara aqui -->
         </div>
         <div class="content-wrapper">
             <div class="content-header">
@@ -157,51 +158,50 @@
                         <div class="col-lg-10 col-md-12">
                             <div class="card card-primary">
                                 <div class="card-header">
-                                    <h3 class="card-title">Administracion de Usuarios</h3>
+                                    <h3 class="card-title">Administracion de Productos</h3>
                                 </div>
-                                <div class="container-fluid px-3 py-4" >
+                                <div class="container-fluid px-3 py-4">
                                     <div class="row ">
-                                        <input type="text" id="txtBuscar" class="form-control" placeholder="Buscar usuario por cedula" oninput="this.value = this.value.replace(/[^0-9]/g, '')">
+                                        <input type="text" id="txtInputConsultar" class="form-control" placeholder="Buscar producto por nombre">
                                     </div>
                                 </div>
-                                <form id="frmRegistraCliente">
+                                <form id="frmRegistraProducto">
                                     <div class="card-body">
                                         <div class="row mb-2">
                                             <div class="col-md-4">
                                                 <div class="form-group">
-                                                    <label for="txtNombreUsuario">Nombre <span>*</span></label>
-                                                    <input type="text" class="form-control" id="txtNombreUsuario" placeholder="Nombre del usuario">
+                                                    <label for="txtNombreProducto">Nombre <span>*</span></label>
+                                                    <input type="text" class="form-control" id="txtNombreProducto" placeholder="Nombre del producto">
                                                 </div>
                                             </div>
                                             <div class="col-md-4">
                                                 <div class="form-group">
-                                                    <label for="txtDocumentoUsuario">Documento <span>*</span></label>
-                                                    <input type="text" class="form-control" id="txtDocumentoUsuario" placeholder="Documento del usuario" oninput="this.value = this.value.replace(/[^0-9]/g, '')">
+                                                    <label for="txtPrecioProducto">Precio <span>*</span></label>
+                                                    <input type="number" class="form-control" id="txtPrecioProducto" placeholder="Precio del producto" oninput="this.value = this.value.replace(/[^0-9]/g, '')">
                                                 </div>
                                             </div>
                                             <div class="col-md-4">
                                                 <div class="form-group">
-                                                    <label for="txtTelefonoUsuario">Telefono <span>*</span></label>
-                                                    <input type="text" class="form-control" id="txtTelefonoUsuario" placeholder="Telefono del usuario" oninput="this.value = this.value.replace(/[^0-9]/g, '')">
+                                                    <label for="txtDescripcionProducto">Descripcion <span>*</span></label>
+                                                    <input type="text" class="form-control" id="txtDescripcionProducto" placeholder="Descripcion del producto">
                                                 </div>
                                             </div>
                                         </div>
                                         <div class="row mb-3" style="display: flex; justify-content:space-evenly">
                                             <div class="col-md-3">
                                                 <div class="form-group">
-                                                    <label for="txtCorreoUsuario">Correo Electronico <span>*</span></label>
-                                                    <input type="email" class="form-control" id="txtCorreoUsuario" placeholder="Correo Electronico del usuario">
+                                                    <label for="txtNombreProveedor">Proveedor <span>*</span></label>
+                                                    <select class="form-control" id="txtNombreProveedor" required>
+                                                        <option value="">Seleccione un producto</option>
+                                                    </select>
                                                 </div>
                                             </div>
                                             <div class="col-md-3">
                                                 <div class="form-group">
-                                                    <label for="txtTipoUsuario">Tipo Usuario <span>*</span></label>
-                                                    <select class="form-control" id="txtTipoUsuario">
-                                                        <option value="" selected disabled>Seleccione una opcion</option>
-                                                        <option value="1">Cliente</option>
-                                                        <option value="2">Empleado</option>
-                                                        <option value="3">Administrador</option>
-
+                                                    <label for="txtTipoProducto">Tipo Producto<span>*</span></label>
+                                                    <select class="form-control" id="txtTipoProducto" required>
+                                                        <option value="1">Maquillaje</option>
+                                                        <option value="2">Cuidado Facial</option>
                                                     </select>
                                                 </div>
                                             </div>
@@ -213,12 +213,15 @@
                                         </div>
                                         <div class="row mb-4" style="margin-top: 15px">
                                             <div class="col-md-6">
-                                                <button id="btnInsertar" class="btn-block btn-lg btn-spa-blue" type="submit">Insertar</button>
+                                                <button id="bntInsertar" class="btn-block btn-lg btn-spa-blue" type="button" onclick="">Insertar</button>
                                             </div>
 
                                             <div class="col-md-6">
                                                 <button id="btnConsultar" class="btn-block btn-lg btn-spa-blue" type="button">Consultar</button>
                                             </div>
+
+
+
                                             <div class="col-md-6">
                                                 <button id="btnConfirmar" class="btn-block btn-lg btn-spa-green" type="button" disabled>Confirmar</button>
                                             </div>
@@ -229,26 +232,22 @@
                                         </div>
                                         <div class="row">
                                             <div class="col-12">
-                                                <div class="table-responsive">
-                                                    <table id="tblUsuario" class="table table-bordered table-striped">
-                                                        <thead>
-                                                            <tr>
-                                                                <th>Id</th>
-                                                                <th>Nombre</th>
-                                                                <th>Documento</th>
-                                                                <th>Telefono</th>
-                                                                <th>Correo Electronico</th>
-                                                                <th>Tipo Usuario</th>
-                                                                <th>Acciones</th>
-                                                            </tr>
-                                                        </thead>
-                                                        <tbody id="tblUsuarioBody">
-
-                                                            <!-- Aqui se llenan los datos dinamicamente -->
-                                                        </tbody>
-                                                    </table>
-                                                </div>
-                                                
+                                                <table id="tblProducto" class="table table-bordered table-striped">
+                                                    <thead>
+                                                        <tr>
+                                                            <th>Id</th>
+                                                            <th>Nombre</th>
+                                                            <th>Precio</th>
+                                                            <th>Descripcion</th>
+                                                            <th>IdProveedor</th>
+                                                            <th>IdTipoProducto</th>
+                                                            <th>Acciones</th>
+                                                        </tr>
+                                                    </thead>
+                                                    <tbody id="tblProductoBody">
+                                                        <!-- Aquí se llenan los datos dinámicamente -->
+                                                    </tbody>
+                                                </table>
                                             </div>
                                         </div>
                                     </div>
@@ -261,23 +260,29 @@
                     </div>
                 </div>
             </section>
+            <!-- /.content -->
         </div>
-
+        <!-- /.content-wrapper -->
+        <!-- Control Sidebar (Opcional - si lo tienes) -->
         <aside class="control-sidebar control-sidebar-dark">
+            <!-- El contenido del sidebar de control va aqui -->
         </aside>
         <footer class="main-footer">
             <strong>Copyright &copy; 2024 Your Project.</strong> All rights reserved.
         </footer>
     </div>
+    <!-- ./wrapper -->
+    <!-- SCRIPTS -->
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script> 
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.2/dist/js/bootstrap.bundle.min.js"></script>
     <script src="Estilos/adminlte.min.js"></script> 
     <script src="../Scripts/jquery.dataTables.min.js"></script>
     <script src="../Scripts/dataTables.bootstrap4.min.js"></script>
+
     <script src="Scripts/Menu.js"></script>
     <script src="Scripts/Comunes/CRUD.js"></script>
     <script src="Scripts/Comunes/Comunes.js"></script>
-    <script src="Scripts/Usuario.js"></script>
+    <script src="Scripts/Producto.js"></script>
 </body>
 </html>

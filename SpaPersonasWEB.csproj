@@ -154,6 +154,8 @@
     <Content Include="favicon.ico" />
     <Content Include="Global.asax" />
     <Content Include="Paginas\ContenidoEmbebido\Inventarios.jpeg" />
+    <Content Include="Paginas\ContenidoEmbebido\login.jpg" />
+    <Content Include="Paginas\ContenidoEmbebido\Productos.jpg" />
     <Content Include="Paginas\ContenidoEmbebido\Proveedores.jpg" />
     <Content Include="Paginas\ContenidoEmbebido\Servicios.jpg" />
     <Content Include="Paginas\ContenidoEmbebido\usuarios.jpg" />
@@ -194,8 +196,10 @@
     <Content Include="Paginas\Estilos\webfonts\fa-regular-400.svg" />
     <Content Include="Paginas\Estilos\webfonts\fa-solid-900.svg" />
     <Content Include="Paginas\Facturacion.html" />
+    <Content Include="Paginas\Producto.html" />
     <Content Include="Paginas\Proveedor_Producto.html" />
     <Content Include="Paginas\Reserva.html" />
+    <Content Include="Paginas\Scripts\Producto.js" />
     <Content Include="Paginas\Sede.html" />
     <Content Include="Paginas\Login.html" />
     <Content Include="Paginas\Menu.html" />
