@@ -7,7 +7,7 @@ document.addEventListener("DOMContentLoaded", function () {
     // Funcion para llenar la tabla Usuarios
     function llenarTabla() {
         //const token = localStorage.getItem('token'); // o sessionStorage
-        const token2 = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1bmlxdWVfbmFtZSI6IkVzZXJuYTI2IiwibmJmIjoxNzQ4OTU0NDAwLCJleHAiOjE3NDg5OTc2MDAsImlhdCI6MTc0ODk1NDQwMCwiaXNzIjoiaHR0cDovL2xvY2FsaG9zdDo0NDMyMyIsImF1ZCI6Imh0dHA6Ly9sb2NhbGhvc3Q6NDQzMjMifQ.lg_MiYtQX-KjQ7w_WPTv7t10DgBo6j_3lOzV5RUtji8"
+        const token2 = getCookie("token");
         $.ajax({
             type: "GET",
             url: URLBase + "api/Usuario/Listar",
@@ -23,10 +23,14 @@ document.addEventListener("DOMContentLoaded", function () {
                     <tr>
                         <td>${u.Id}</td>
                         <td>${u.Nombre}</td>
-                        <td>${u.Cedula}</td>
+                        <td class="tdcedula">${u.Cedula}</td>
                         <td>${u.Telefono}</td>
                         <td>${u.Correo_electronico}</td>
                         <td>${u.IdTipoUsuario}</td>
+                        <td>
+                            <button type="button" class="btn btn-sm btn-primary w-100 btnActualizar" data-id=${u.Id}>Actualizar</button>
+                            <button type="button" class="btn btn-sm btn-danger w-100 btnEliminar" data-id=${u.Id}>Eliminar</button>
+                        </td>
                     </tr>
                 `;
                     console.log("Nombre usuario: ", u.Nombre);
@@ -40,60 +44,275 @@ document.addEventListener("DOMContentLoaded", function () {
         });
     }
 
+    // Metodo para insertar un usuario a la bd
+    function insertarUsuario() {
+        // Obtener los datos del formulario
+        let nombreUser = ($("#txtNombreUsuario").val() || "").trim();
+        let documento = ($("#txtDocumentoUsuario").val() || "").trim();
+        let telefono = ($("#txtTelefonoUsuario").val() || "").trim();
+        let correo = ($("#txtCorreoUsuario").val() || "").trim();
+        let tipoUser = ($("#txtTipoUsuario").val() || "").trim();
+        const token2 = getCookie("token");
+
+        if (!nombreUser || !documento || !telefono || !correo || !tipoUser) {
+            Swal.fire({
+                icon: "error",
+                title: "Oops...",
+                text: "Los campos deben llenarse",
+                timer: 2000
+            });
+            return;
+        }
+
+        $.ajax({
+            type: "POST",
+            url: URLBase + "api/Usuario/Insertar",
+            headers: {
+                'Authorization': 'Bearer ' + token2
+            },
+            data: {
+                "Nombre": nombreUser,
+                "Cedula": documento,
+                "Telefono": telefono,
+                "Correo_electronico": correo,
+                "IdTipoUsuario": tipoUser
+            },
+            success: function (response) {
+                console.log(response);
+                Swal.fire({
+                    icon: "success",
+                    title: "Inserción Exitosa",
+                    text: "Se ha insertado correctamente el usuario",
+                    timer: 2000
+                });
+
+                llenarTabla();
+            }
+        })
+    }
+
+    document.getElementById("btnInsertar").addEventListener("click", function (e) {
+        e.preventDefault();
+        insertarUsuario();
+    })
+
+    // Metodo para actualizar un usuario
+    function actualizarUsuario(id) {
+        const token2 = getCookie("token");
+        $.ajax({
+            type: "GET",
+            url: URLBase + "api/Usuario/ConsultarXId",
+            headers: {
+                'Authorization': 'Bearer ' + token2
+            },
+            data: {
+                "Id": id
+            },
+            success: function (response) {
+                console.log(response);
+                $("#txtNombreUsuario").val(response.Nombre);
+                $("#txtDocumentoUsuario").val(response.Cedula) ;
+                $("#txtTelefonoUsuario").val(response.Telefono);
+                $("#txtCorreoUsuario").val(response.Correo_electronico) ;
+                $("#txtTipoUsuario").val(response.IdTipoUsuario);
+                $("#txtId").val(response.Id);
+            }
+        })
+    }
+
+    document.addEventListener("click", function (e) {
+        if (e.target.classList.contains("btnActualizar")) { // Actualizar
+            e.preventDefault();
+            const id = e.target.getAttribute("data-id");
+            console.log("Actualizar ID:", id);
+            $("#btnInsertar").prop("disabled", true);
+            $("#btnConsultar").prop("disabled", true);
+            $("#btnConfirmar").removeAttr("disabled");
+            $("#btnCancelar").removeAttr("disabled");
+            actualizarUsuario(id);
+
+        }
+    });
+
+    function eliminarUsuario(cedula) {
+        const token2 = getCookie("token");
+        $.ajax({
+            type: "DELETE",
+            url: URLBase + "api/Usuario/Eliminar",
+            headers: {
+                'Authorization': 'Bearer ' + token2
+            },
+            data: {
+                "Cedula": cedula
+            },
+            success: function (response) {
+                Swal.fire({
+                    icon: "success",
+                    title: "Eliminación Exitosa",
+                    text: "Se ha eliminado correctamente el usuario",
+                    timer: 2000
+                });
+
+                llenarTabla();
+            }
+        })
+    }
+
+    document.addEventListener("click", function (e) {
+        if (e.target.classList.contains("btnEliminar")) { // Eliminar
+            e.preventDefault();
+
+            Swal.fire({
+                title: "¿Está seguro de eliminar el usuario?",
+                showCancelButton: true,
+                confirmButtonText: "Eliminar",
+                denyButtonText: `Cancelar`
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    //const id = e.target.getAttribute("data-id");
+                    var fila = $(e.target).closest("tr"); // Obtener la fila <tr> más cercana al botón presionado
+                    var cedula = fila.find(".tdcedula").text(); // Buscar el td con la clase tdcedula dentro de esa fila
+                    eliminarUsuario(cedula);
+                } 
+            });
+        }
+    });
+
+    // Metodo para cuando se va a confirmar la actualizacion del usuario
+    function confirmarActualizacionUsuario() {
+        // Obtener los datos del formulario
+        let nombreUser = ($("#txtNombreUsuario").val() || "").trim();
+        let documento = ($("#txtDocumentoUsuario").val() || "").trim();
+        let telefono = ($("#txtTelefonoUsuario").val() || "").trim();
+        let correo = ($("#txtCorreoUsuario").val() || "").trim();
+        let tipoUser = ($("#txtTipoUsuario").val() || "").trim();
+        let id = ($("#txtId").val() || "").trim();
+        const token2 = getCookie("token");
+
+        if (!nombreUser || !documento || !telefono || !correo || !tipoUser || !id) {
+            Swal.fire({
+                icon: "error",
+                title: "Oops...",
+                text: "Los campos deben llenarse",
+                timer: 2000
+            });
+            return;
+        }
+        $.ajax({
+            type: "PUT",
+            url: URLBase + "api/Usuario/Actualizar",
+            headers: {
+                'Authorization': 'Bearer ' + token2
+            },
+            data: {
+                "Id": id,
+                "Nombre": nombreUser,
+                "Cedula": documento,
+                "Telefono": telefono,
+                "Correo_electronico": correo,
+                "IdTipoUsuario": tipoUser
+            },
+            success: function (response) {
+                console.log(response);
+                // Reactivar o desactivar los botones segun sea el caso
+                $("#btnInsertar").removeAttr("disabled");
+                $("#btnConsultar").removeAttr("disabled");
+                $("#btnConfirmar").prop("disabled", true);
+                $("#btnCancelar").prop("disabled", true);
+
+                Swal.fire({
+                    icon: 'success',
+                    title: '¡Usuario actualizado!',
+                    text: 'El usuario se actualizó con éxito.',
+                    confirmButtonText: 'Aceptar'
+                });
+                $("#txtNombreUsuario").val("");
+                $("#txtDocumentoUsuario").val("");
+                $("#txtTelefonoUsuario").val("");
+                $("#txtCorreoUsuario").val("");
+                $("#txtTipoUsuario").val("");
+                $("#txtId").val("");
+                llenarTabla();
+            }
+            
+        })
+    }
+
+    // Evento para detectar click en confirmar al querer actualizar el usuario
+    document.getElementById("btnConfirmar").addEventListener("click", function (e) {
+        e.preventDefault();
+        confirmarActualizacionUsuario();
+    })
+
+    // Evento para detectar click en cancelar al querer actualizar el usuario
+    document.getElementById("btnCancelar").addEventListener("click", function (e) {
+        e.preventDefault();
+        $("#txtNombreUsuario").val("");
+        $("#txtDocumentoUsuario").val("");
+        $("#txtTelefonoUsuario").val("");
+        $("#txtCorreoUsuario").val("");
+        $("#txtTipoUsuario").val("");
+        $("#txtId").val("");
+    })
+
+    // Metodo para consultarPorCedula
+    function consultarPorCedula(cedula) {
+        const token2 = getCookie("token");
+        $.ajax({
+            type: "GET",
+            url: URLBase + "api/Usuario/ConsultarXCedula",
+            headers: {
+                'Authorization': 'Bearer ' + token2
+            },
+            data: {
+                "Cedula": cedula
+            },
+            success: function (response) {
+                console.log(response);
+                if (response && typeof response === "object") {
+                    let tablaBody = document.getElementById("tblUsuarioBody");
+                    let htmlContent = `
+                    <tr>
+                        <td>${response.Id}</td>
+                        <td>${response.Nombre}</td>
+                        <td class="tdcedula">${response.Cedula}</td>
+                        <td>${response.Telefono}</td>
+                        <td>${response.Correo_electronico}</td>
+                        <td>${response.IdTipoUsuario}</td>
+                        <td>
+                            <button type="button" class="btn btn-sm btn-primary w-100 btnActualizar" data-id=${response.Id}>Actualizar</button>
+                            <button type="button" class="btn btn-sm btn-danger w-100 btnEliminar" data-id=${response.Id}>Eliminar</button>
+                        </td>
+                    </tr>
+                    `;
+                    tablaBody.innerHTML = htmlContent;
+
+                } else {
+                    Swal.fire({
+                        icon: "warning",
+                        toast: true,
+                        position: "top-end",
+                        title: "Usuario no encontrado",
+                        timer: 2000
+                    });
+                } 
+
+            }
+        })
+    }
+
+
+    // Evento que detecta cuando sea desea consultar por cedula
+    document.getElementById("btnConsultar").addEventListener("click", function (e) {
+        e.preventDefault();
+        let textoBuscar = ($("#txtBuscar").val() || "").trim();
+
+        console.log(textoBuscar);
+        if (textoBuscar) {
+            consultarPorCedula(textoBuscar);
+        } else {
+            llenarTabla();
+        }
+    })
 
 })
-
-//jQuery(function () {
-//    //Registrar los botones para responder al evento click
-//    $("#dvMenu").load("../Paginas/Menu.html");
-//    LlenarTablaUsuarios();
-//});
-//function LlenarTablaUsuarios() {
-//    let URL = URLBase + "api/Usuario/Listar";
-//    LlenarTablaXServiciosAuth(URL, "#tblUsuario");
-//}
-//async function EjecutarComando(Metodo, Funcion) {
-//    let URL = URLBase + "api/Usuario/" + Funcion;
-//    const usuario = new Usuario($("#txtNombreUsuario").val(), $("#txtDocumentoUsuario").val(),$("#").val(),);
-//    const rpta = await EjecutarComandoServicioAuth(Metodo, URL, empleado);
-//    LlenarTablaEmpleados();
-//}
-//async function Consultar() {
-//    let Documento = $("#txtDocumento").val();
-//    let URL = URLBase + "api/Empleados/ConsultarXDocumento?Documento=" + Documento;
-//    const empleado = await ConsultarServicioAuth(URL);
-//    if (empleado == null || empleado == undefined) {
-//        $("#dvMensaje").removeClass("alert alert-success");
-//        $("#dvMensaje").addClass("alert alert-danger");
-//        $("#dvMensaje").html("No se pudo realizar la consulta del empleado");
-//        $("#txtNombre").val("");
-//        $("#txtPrimerApellido").val("");
-//        $("#txtSegundoApellido").val("");
-//        $("#txtFechaNacimiento").val("");
-//        $("#txtTelefono").val("");
-//        $("#txtDireccion").val("");
-//    }
-//    else {
-//        $("#dvMensaje").removeClass("alert alert-danger");
-//        $("#dvMensaje").addClass("alert alert-success");
-//        $("#dvMensaje").html("");
-//        //Consultó el empleado
-//        $("#txtNombre").val(empleado.Nombre);
-//        $("#txtPrimerApellido").val(empleado.PrimerApellido);
-//        $("#txtSegundoApellido").val(empleado.SegundoApellido);
-//        $("#txtFechaNacimiento").val(empleado.FechaNacimiento.split('T')[0]);
-//        $("#txtTelefono").val(empleado.Telefono);
-//        $("#txtDireccion").val(empleado.Direccion);
-//    }
-//}
-//class Empleado {
-//    constructor(Documento, Nombre, PrimerApellido, SegundoApellido, Direccion, Telefono, FechaNacimiento) {
-//        this.Documento = Documento;
-//        this.Nombre = Nombre;
-//        this.PrimerApellido = PrimerApellido;
-//        this.SegundoApellido = SegundoApellido;
-//        this.Direccion = Direccion;
-//        this.Telefono = Telefono;
-//        this.FechaNacimiento = FechaNacimiento;
-//    }
-//}

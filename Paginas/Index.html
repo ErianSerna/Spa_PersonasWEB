@@ -17,6 +17,24 @@
             padding: 20px 0;
         }
 
+        .contenedor-presentacion {
+            background: linear-gradient(135deg, #d4f1f9, #a0d8ef, #76c7eb);
+            padding: 2rem;
+            border-radius: 12px; /* Opcional: bordes redondeados */
+            color: #003366; /* Azul oscuro para contraste de texto */
+            text-align: center;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1); /* Sombra sutil */
+        }
+
+        .contenedor-descripcion {
+            text-align: center;
+        }
+
+        .contenedor-descripcion p span {
+            font-style:italic;
+            font-weight:bold;
+        }
+
 
     </style>
 </head>
@@ -35,20 +53,62 @@
                         </div>
                         <div class="card-body">
                             <!-- CUERPO DEL INDEX-->
-                            <div class="container-fluid">
+                            <div class="w-100 contenedor-presentacion">
                                 <div class="row quienes-title">
                                     <div class="col-12">
                                         <h2>¿QUIÉNES SOMOS?</h2>
                                     </div>
                                 </div>
-                                <div class="row">
+                                <div class="row contenedor-descripcion">
                                     <div class="col-12">
-                                        <p>Somos un Spa dedicado al cuidado personal de las personas, limpiando las malas vibras y demás</p>
+                                        <p>Somos un <span>Spa</span> dedicado al cuidado personal de las personas, limpiando las <span>malas vibras</span> y demás</p>
                                     </div>
                                 </div>
-
                             </div>
-
+                        </div>
+                        <div class="container-fluid" style="margin: 10px; border-radius: 10px;">
+                            <div class="row">
+                                <div class="col-sm-12 col-md-3">
+                                    <div class="card">
+                                        <img class="card img-top" src="/Paginas/ContenidoEmbebido/usuarios.jpg" alt="img usuarios"/>
+                                        <div class="card-body">
+                                            <h5 class="card-title">Usuarios</h5>
+                                            <p class="card-text">Administración de usuarios dentro del Spa</p>
+                                            <button class="btn btn-info rounded" onclick="window.location.href='Usuario.html';">Ir a Usuarios</button>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-sm-12 col-md-3">
+                                    <div class="card">
+                                        <img class="card img-top" src="/Paginas/ContenidoEmbebido/Proveedores.jpg" alt="img proveedores" />
+                                        <div class="card-body">
+                                            <h5 class="card-title">Proveedores</h5>
+                                            <p class="card-text">Administración de proveedores asociados al Spa</p>
+                                            <button class="btn btn-info rounded" onclick="window.location.href='Usuario.html';">Ir a Proveedores</button>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-sm-12 col-md-3">
+                                    <div class="card">
+                                        <img class="card img-top" src="/Paginas/ContenidoEmbebido/Inventarios.jpeg" alt="img inventario" />
+                                        <div class="card-body">
+                                            <h5 class="card-title">Inventario</h5>
+                                            <p class="card-text">Gestión de inventario del Spa</p>
+                                            <button class="btn btn-info rounded" onclick="window.location.href='Inventario.html';">Ir a Inventario</button>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-sm-12 col-md-3">
+                                    <div class="card">
+                                        <img class="card img-top" src="/Paginas/ContenidoEmbebido/Servicios.jpg" alt="img servicios" />
+                                        <div class="card-body">
+                                            <h5 class="card-title">Servicios</h5>
+                                            <p class="card-text">Gestión y visualización de servicios del Spa</p>
+                                            <button class="btn btn-info rounded" onclick="window.location.href='Servicio_Sede.html';">Ir a Servicios</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
