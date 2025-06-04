@@ -1,54 +1,43 @@
-﻿var URLBase = "http://spapersonas2025.runasp.net/";
-jQuery(function () {
-    //Registrar los botones para responder al evento click
-    $("#dvMenu").load("../Paginas/Menu.html");
-    LlenarTablaProveedor();
-});
-function LlenarTablaProveedor() {
-    let URL = URLBase + "api/Proveedor/ConsultarTodos";
-    LlenarTablaXServiciosAuth(URL, "#tblProveedor");
-}
-//async function EjecutarComando(Metodo, Funcion) {
-//    let URL = URLBase + "api/Empleados/" + Funcion;
-//    const empleado = new Empleado($("#txtDocumento").val(), $("#txtNombre").val(), $("#txtPrimerApellido").val(),
-//        $("#txtSegundoApellido").val(), $("#txtDireccion").val(), $("#txtTelefono").val(), $("#txtFechaNacimiento").val());
-//    const rpta = await EjecutarComandoServicioAuth(Metodo, URL, empleado);
-//    LlenarTablaEmpleados();
-//}
-//async function Consultar() {
-//    let Documento = $("#txtDocumento").val();
-//    let URL = URLBase + "api/Empleados/ConsultarXDocumento?Documento=" + Documento;
-//    const empleado = await ConsultarServicioAuth(URL);
-//    if (empleado == null || empleado == undefined) {
-//        $("#dvMensaje").removeClass("alert alert-success");
-//        $("#dvMensaje").addClass("alert alert-danger");
-//        $("#dvMensaje").html("No se pudo realizar la consulta del empleado");
-//        $("#txtNombre").val("");
-//        $("#txtPrimerApellido").val("");
-//        $("#txtSegundoApellido").val("");
-//        $("#txtFechaNacimiento").val("");
-//        $("#txtTelefono").val("");
-//        $("#txtDireccion").val("");
-//    }
-//    else {
-//        $("#dvMensaje").removeClass("alert alert-danger");
-//        $("#dvMensaje").addClass("alert alert-success");
-//        $("#dvMensaje").html("");
-//        //Consultó el empleado
-//        $("#txtNombre").val(empleado.Nombre);
-//        $("#txtPrimerApellido").val(empleado.PrimerApellido);
-//        $("#txtSegundoApellido").val(empleado.SegundoApellido);
-//        $("#txtFechaNacimiento").val(empleado.FechaNacimiento.split('T')[0]);
-//        $("#txtTelefono").val(empleado.Telefono);
-//        $("#txtDireccion").val(empleado.Direccion);
-//    }
-//}
-class Proveedor {
-    constructor(Nombre, Telefono, Correo_Electronico, Nit, Direccion) {
-        this.Nombre = Nombre;
-        this.Telefono = Telefono;
-        this.Correo_Electronico = Correo_Electronico;
-        this.Nit = Nit;
-        this.Direccion = Direccion;
+﻿var URLBase = "http://spapersonas2025.runasp.net/"; // para el consumo de las apis
+
+document.addEventListener("DOMContentLoaded", function () {
+    // Metodos y demas
+    llenarTabla();
+
+    // Funcion para llenar la tabla Usuarios
+    function llenarTabla() {
+        //const token = localStorage.getItem('token'); // o sessionStorage
+        const token2 = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1bmlxdWVfbmFtZSI6IkVzZXJuYTI2IiwibmJmIjoxNzQ4OTg4Mjk2LCJleHAiOjE3NDkwMzE0OTYsImlhdCI6MTc0ODk4ODI5NiwiaXNzIjoiaHR0cDovL2xvY2FsaG9zdDo0NDMyMyIsImF1ZCI6Imh0dHA6Ly9sb2NhbGhvc3Q6NDQzMjMifQ._eSRcyd3oX7amm6aZ_nop48Ua_InGkksSh9yrFs3fow"
+        $.ajax({
+            type: "GET",
+            url: URLBase + "api/Proveedor/ConsultarTodos",
+            headers: {
+                'Authorization': 'Bearer ' + token2
+            },
+            success: function (response) {
+                console.log(response); // Depuración
+                let htmlContent = "";
+                let tablaBody = document.getElementById("tblProveedorBody");
+                response.forEach(p => {
+                    htmlContent += `
+                    <tr>
+                        <td>${p.Nombre}</td>
+                        <td>${p.Telefono}</td>
+                        <td>${p.Correo_electronico}</td>
+                        <td>${p.Nit}</td>
+                        <td>${p.Direccion}</td>
+                    </tr>
+                `;
+                    console.log("Nombre proveedor: ", p.Nombre);
+                });
+
+                tablaBody.innerHTML = htmlContent;
+            },
+            error: function (xhr, status, error) {
+                console.error("Error en la solicitud:", xhr.responseText);
+            }
+        });
     }
-}
+
+
+})
