@@ -44,7 +44,8 @@ async function EjecutarComandoServicioAuth(Metodo, URLServicio, Objeto) {
 async function EjecutarComandoServicioRpta(Metodo, URLServicio, Objeto) {
     //Se crea un objeto de la clase cliente con los datos de la interfaz
     try {
-        const Respuesta = await fetch(URLServicio,
+        let urlCompleta = URLServicio + "api/Login/Ingresar"
+        const Respuesta = await fetch(urlCompleta,
             {
                 method: Metodo,
                 mode: "cors",
