@@ -172,7 +172,8 @@ function LlenarCombos() {
             $("#cboServicio").append('<option selected="selected" value="0">Seleccione un servicio</option>');
             if (response && response.length > 0) {
                 response.forEach(servicio => {
-                    $("#cboServicio").append('<option value="' + servicio.Id + '">' + servicio.Nombre + '</option>');
+                    $("#cboServicio").append('<option value="' + servicio.Id + '">' + servicio.Descripcion + '</option>');
+                    
                 });
             }
             // Inicializar Select2 despues de llenar el combo

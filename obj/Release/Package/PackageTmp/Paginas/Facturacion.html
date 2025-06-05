@@ -1,0 +1,290 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Factura de compra</title>
+
+    <!-- Google Font: Source Sans Pro -->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
+    <!-- Font Awesome -->
+    <link href="Estilos/all.min.css" rel="stylesheet" />
+    <!-- Theme style -->
+    <link href="Estilos/adminlte.min.css" rel="stylesheet" />
+    <!-- Select2 -->
+    <link href="Estilos/select2.min.css" rel="stylesheet" />
+    <!-- Estilos para el datatable -->
+    <link href="Estilos/dataTables.min.css" rel="stylesheet" />
+    <link href="Estilos/dataTables.bootstrap4.min.css" rel="stylesheet" />
+
+    <!-- Estilos personalizados para SPA -->
+    <style>
+        body {
+            background: #f7fbfd;
+            font-family: 'Segoe UI', Arial, sans-serif;
+        }
+
+        .card-primary {
+            border-radius: 18px;
+            box-shadow: 0 4px 24px rgba(80, 180, 255, 0.10);
+            border: none;
+        }
+
+        .card-header {
+            background: linear-gradient(90deg, #4fc3f7 0%, #b2ebf2 100%);
+            border-radius: 18px 18px 0 0;
+            color: #fff;
+            text-align: center;
+            letter-spacing: 1px;
+        }
+
+        .card-title {
+            font-size: 1.5rem;
+            font-weight: 600;
+        }
+
+        .form-group label {
+            color: #1976d2;
+            font-weight: 500;
+            letter-spacing: 0.5px;
+        }
+
+        .form-control:focus {
+            border-color: #4fc3f7;
+            box-shadow: 0 0 0 2px #b2ebf2;
+        }
+
+        .btn-spa-blue {
+            background: linear-gradient(90deg, #4fc3f7 0%, #81d4fa 100%);
+            color: #fff;
+            border: none;
+            border-radius: 18px;
+            font-weight: 600;
+            font-size: 1.1rem;
+            font-family: 'Segoe UI', Arial, sans-serif;
+            box-shadow: 0 2px 8px rgba(80, 180, 255, 0.10);
+            transition: background 0.3s, box-shadow 0.3s;
+            margin-bottom: 8px;
+        }
+
+            .btn-spa-blue:hover, .btn-spa-blue:focus {
+                background: linear-gradient(90deg, #29b6f6 0%, #4fc3f7 100%);
+                color: #fff;
+                box-shadow: 0 4px 16px rgba(80, 180, 255, 0.18);
+            }
+
+        .table thead th {
+            background: #e3f2fd;
+            color: #1976d2;
+            border-bottom: 2px solid #b2ebf2;
+        }
+
+        .table-bordered {
+            border-radius: 12px;
+            overflow: hidden;
+        }
+
+        .card-footer {
+            background: transparent;
+            border-top: none;
+        }
+
+        /* Nuevo estilo para asegurar que el content-wrapper no tenga desplazamiento */
+        .content-wrapper {
+            margin-left: 0 !important;
+            padding-left: 0 !important;
+            padding-right: 0 !important;
+        }
+
+        @media (max-width: 767px) {
+            .card-body .row > div {
+                margin-bottom: 12px;
+            }
+        }
+    </style>
+</head>
+<body class="hold-transition layout-top-nav">
+    <!-- REQUIRED WRAPPER -->
+    <div class="wrapper">
+
+        <!-- Navbar (Top navigation bar) -->
+        <!-- El div dvMenu ahora sera el contenedor directo para el navbar cargado desde Menu.html -->
+        <div id="dvMenu">
+            <!-- El contenido del menu (el <nav> de Menu.html) se cargara aqui -->
+        </div>
+        <!-- /.navbar -->
+        <!-- Content Wrapper. Contains page content -->
+        <div class="content-wrapper">
+            <!-- Content Header (Page header) - Puedes poner el titulo de la pagina aqui -->
+            <div class="content-header">
+                <div class="container-fluid">
+                    <div class="row mb-2">
+                        <div class="col-sm-6">
+                            <h1 class="m-0">Factura de Compra</h1>
+                        </div><!-- /.col -->
+                    </div><!-- /.row -->
+                </div><!-- /.container-fluid -->
+            </div>
+            <!-- /.content-header -->
+            <!-- Main content -->
+            <section class="content">
+                <div class="container py-4">
+                    <!-- CAMBIADO: de container-fluid a container para centrar mejor el contenido principal -->
+                    <div class="row justify-content-center">
+                        <div class="col-lg-10 col-md-12">
+                            <!-- general form elements -->
+                            <div class="card card-primary">
+                                <div class="card-header">
+                                    <h3 class="card-title" id="idTitulo">FACTURA DE COMPRA</h3>
+                                </div>
+                                <!-- /.card-header -->
+                                <!-- form start -->
+                                <form id="frmFacturacion">
+                                    <div class="card-body">
+                                        <div class="row">
+                                            <div class="col-md-1">
+                                                <div class="form-group">
+                                                    <label for="txtNumeroFactura">Factura</label>
+                                                    <input type="text" class="form-control" id="txtNumeroFactura" placeholder="Numero de factura" disabled>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-2">
+                                                <div class="form-group">
+                                                    <label for="txtFechaCompra">Fecha</label>
+                                                    <input type="text" class="form-control" id="txtFechaCompra" placeholder="Fecha compra" disabled>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-2">
+                                                <div class="form-group">
+                                                    <label for="txtDocumento">Documento del cliente</label>
+                                                    <input type="text" class="form-control" id="txtDocumento" placeholder="Documento cliente">
+                                                </div>
+                                            </div>
+                                            <div class="col-md-1">
+                                                <div class="form-group">
+                                                    <img id="btnBuscar" src="../Imagenes/Buscar.jpg" onclick="Consultar()" style="cursor:pointer; width:30px; height:30px; margin-top: 30px;" alt="Buscar" /> <!-- Se a�ade alt y estilos basicos -->
+                                                </div>
+                                            </div>
+                                            <div class="col-md-4">
+                                                <div class="form-group">
+                                                    <label for="txtNombreCliente">Nombre del cliente</label>
+                                                    <input type="text" class="form-control" id="txtNombreCliente" placeholder="Nombre del cliente" disabled>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-2">
+                                                <div class="form-group">
+                                                    <label for="txtTotalCompra">Total compra</label>
+                                                    <input type="text" class="form-control" id="txtTotalCompra" placeholder="Total" disabled>
+                                                    <input type="text" class="form-control" id="txtidEmpleado" placeholder="" hidden>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-md-3">
+                                                <div class="form-group">
+                                                    <label for="cboTipoProducto">Tipo Producto</label>
+                                                    <!-- Se levanta el evento onchange cuando se elige un tipo de producto -->
+                                                    <select id="cboTipoProducto" class="form-control select2" style="width: 100%;" onchange="ListarProductos(0)">
+                                                        <option selected="selected" value="0">Seleccione un tipo de producto</option>
+                                                    </select>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-3">
+                                                <div class="form-group">
+                                                    <label for="cboProducto">Producto</label>
+                                                    <!--En el combo producto se levanta el evento on change, para que calcule el valor unitario del producto seleccinado-->
+                                                    <select id="cboProducto" class="form-control select2" style="width: 100%;" onchange="CalcularSubtotal()">
+                                                        <option selected="selected" value="0">Seleccione el producto</option>
+                                                    </select>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-2">
+                                                <div class="form-group">
+                                                    <label for="txtValorUnitario">Valor Unitario</label>
+                                                    <input type="text" class="form-control" id="txtValorUnitarioTexto" placeholder="Valor producto" disabled>
+                                                    <!--Se agregan textos ocultos para facilitar la captura de la informacion y no repetir procesos-->
+                                                    <input type="text" class="form-control" id="txtValorUnitario" placeholder="Valor producto" hidden>
+                                                    <input type="text" class="form-control" id="txtCodigoProducto" placeholder="Codigo producto" hidden>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-2">
+                                                <div class="form-group">
+                                                    <!--Cuando cambia la cantidad se recalcula el valor unitario-->
+                                                    <label for="txtCantidad">Cantidad</label>
+                                                    <input type="number" class="form-control" id="txtCantidad" placeholder="Cantidad" value="1" onchange="CalcularSubtotal()">
+                                                </div>
+                                            </div>
+                                            <div class="col-md-2">
+                                                <div class="form-group">
+                                                    <label for="txtSubtotal">Subtotal</label>
+                                                    <input type="text" class="form-control" id="txtSubtotal" placeholder="Subtotal" disabled>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-md-6">
+                                                <button type="button" id="btnAgregar" class="btn-block btn-lg btn-spa-blue" onclick="GrabarProducto()">GRABAR PRODUCTO</button>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <button type="button" id="btnGrabarFactura" class="btn-block btn-lg btn-spa-blue" onclick="GrabarFactura()" disabled>TERMINAR FACTURA</button>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-md-12">
+                                                <table id="tblFactura" class="display" style="width:100%">
+                                                    <thead>
+                                                        <tr>
+                                                            <th>Eliminar</th>
+                                                            <th>Tipo producto</th>
+                                                            <th>Producto</th>
+                                                            <th>Cantidad</th>
+                                                            <th>Valor Unitario</th>
+                                                            <th>Subtotal</th>
+                                                        </tr>
+                                                    </thead>
+                                                    <tbody>
+                                                    </tbody>
+                                                </table>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <!-- /.card-body -->
+                                    <div class="card-footer">
+                                        <div id="dvMensaje" class=""></div>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+            <!-- /.content -->
+        </div>
+        <!-- /.content-wrapper -->
+        <!-- Control Sidebar (Opcional - si lo tienes) -->
+        <aside class="control-sidebar control-sidebar-dark">
+            <!-- El contenido del sidebar de control va aqui -->
+        </aside>
+        <!-- /.control-sidebar -->
+        <!-- Main Footer (Opcional - si lo tienes) -->
+        <footer class="main-footer">
+            <strong>Copyright &copy; 2024 Your Project.</strong> All rights reserved.
+        </footer>
+    </div>
+    <!-- ./wrapper -->
+    <!-- SCRIPTS -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script> <!-- Version de jQuery actualizada y unica -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.2/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="Estilos/adminlte.min.js"></script> <!-- AdminLTE App JS -->
+    <script src="../Scripts/jquery.dataTables.min.js"></script>
+    <script src="../Scripts/dataTables.bootstrap4.min.js"></script>
+    <!-- Select2 -->
+    <script src="../Scripts/select2.min.js"></script>
+
+    <!-- Archivos comunes -->
+    <script src="Scripts/Menu.js"></script>
+    <script src="Scripts/Comunes/CRUD.js"></script>
+    <script src="Scripts/Comunes/Comunes.js"></script>
+    <script src="Scripts/Facturacion.js"></script>
+</body>
+</html>

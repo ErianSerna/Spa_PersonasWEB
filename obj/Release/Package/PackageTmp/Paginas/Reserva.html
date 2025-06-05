@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Administración de Reservas - SPA</title>
+
+    <!-- Google Font: Source Sans Pro -->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
+    <!-- Font Awesome (si se usa para iconos, descomentar si es necesario) -->
+    <!-- <link href="Estilos/css/all.min.css" rel="stylesheet" /> -->
+    <!-- DataTables CSS -->
+    <link href="Estilos/dataTables.bootstrap4.min.css" rel="stylesheet" />
+    <!-- AdminLTE CSS -->
+    <link href="Estilos/adminlte.min.css" rel="stylesheet" />
+
+    <!-- Estilos personalizados para SPA (copiados de tu plantilla base) -->
+    <style>
+        body {
+            background: #f7fbfd;
+            font-family: 'Segoe UI', Arial, sans-serif;
+        }
+
+        .card-primary {
+            border-radius: 18px;
+            box-shadow: 0 4px 24px rgba(80, 180, 255, 0.10);
+            border: none;
+        }
+
+        .card-header {
+            background: linear-gradient(90deg, #4fc3f7 0%, #b2ebf2 100%);
+            border-radius: 18px 18px 0 0;
+            color: #fff;
+            text-align: center;
+            letter-spacing: 1px;
+        }
+
+        .card-title {
+            font-size: 1.5rem;
+            font-weight: 600;
+        }
+
+        .form-group label {
+            color: #1976d2;
+            font-weight: 500;
+            letter-spacing: 0.5px;
+        }
+
+        .form-control {
+            border-radius: 12px;
+            border: 1px solid #e3f2fd;
+            background: #fff;
+            box-shadow: none;
+            transition: border-color 0.2s;
+        }
+
+            .form-control:focus {
+                border-color: #4fc3f7;
+                box-shadow: 0 0 0 2px #b2ebf2;
+            }
+
+        .btn-spa-blue {
+            background: linear-gradient(90deg, #4fc3f7 0%, #81d4fa 100%);
+            color: #fff;
+            border: none;
+            border-radius: 18px;
+            font-weight: 600;
+            font-size: 1.1rem;
+            font-family: 'Segoe UI', Arial, sans-serif;
+            box-shadow: 0 2px 8px rgba(80, 180, 255, 0.10);
+            transition: background 0.3s, box-shadow 0.3s;
+            margin-bottom: 8px;
+        }
+
+            .btn-spa-blue:hover, .btn-spa-blue:focus {
+                background: linear-gradient(90deg, #29b6f6 0%, #4fc3f7 100%);
+                color: #fff;
+                box-shadow: 0 4px 16px rgba(80, 180, 255, 0.18);
+            }
+
+        .table thead th {
+            background: #e3f2fd;
+            color: #1976d2;
+            border-bottom: 2px solid #b2ebf2;
+        }
+
+        .table-bordered {
+            border-radius: 12px;
+            overflow: hidden;
+        }
+
+        .card-footer {
+            background: transparent;
+            border-top: none;
+        }
+
+        @media (max-width: 767px) {
+            .card-body .row > div {
+                margin-bottom: 12px;
+            }
+        }
+    </style>
+</head>
+<body class="hold-transition sidebar-mini">
+    <!-- REQUIRED WRAPPER -->
+    <div class="wrapper">
+
+        <!-- Navbar (Top navigation bar) -->
+        <nav class="main-header navbar navbar-expand navbar-dark navbar-light">
+            <div id="dvMenu" class="container-fluid">
+                <!-- El contenido del menú (el <nav> de Menu.html) se cargará aquí -->
+            </div>
+        </nav>
+
+        <!-- Content Wrapper. Contains page content -->
+        <div class="content-wrapper">
+            <!-- Content Header (Page header) -->
+            <div class="content-header">
+                <div class="container-fluid">
+                    <div class="row mb-2">
+                        <div class="col-sm-6">
+                            <h1 class="m-0">Administración de Reservas</h1>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Main content -->
+            <section class="content">
+                <div class="container-fluid py-4">
+                    <div class="row justify-content-center">
+                        <div class="col-lg-10 col-md-12">
+                            <div class="card card-primary">
+                                <div class="card-header">
+                                    <h3 class="card-title">Gestión de Reservas</h3>
+                                </div>
+                                <form id="frmReserva">
+                                    <div class="card-body">
+                                        <div class="row mb-2">
+                                            <div class="col-md-4">
+                                                <div class="form-group">
+                                                    <label for="txtCodigo">Código <span>*</span></label>
+                                                    <input type="text" class="form-control" id="txtCodigo" placeholder="Código de la reserva" required>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-4">
+                                                <div class="form-group">
+                                                    <label for="txtFechaInicio">Fecha Inicio <span>*</span></label>
+                                                    <input type="datetime-local" class="form-control" id="txtFechaInicio" required>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-4">
+                                                <div class="form-group">
+                                                    <label for="txtFechaExpiracion">Fecha Expiración <span>*</span></label>
+                                                    <input type="datetime-local" class="form-control" id="txtFechaExpiracion" required>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="row mb-3" style="display: flex; justify-content:space-evenly">
+                                            <div class="col-md-4">
+                                                <div class="form-group">
+                                                    <label for="selIdServicio">Servicio <span>*</span></label>
+                                                    <select class="form-control" id="selIdServicio" required>
+                                                        <option value="" selected disabled>Seleccione un servicio</option>
+                                                    </select>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-4">
+                                                <div class="form-group">
+                                                    <label for="selIdUsuario">Usuario <span>*</span></label>
+                                                    <select class="form-control" id="selIdUsuario" required>
+                                                        <option value="" selected disabled>Seleccione un usuario</option>
+                                                    </select>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="row mb-4" style="margin-top: 15px">
+                                            <div class="col-md-3">
+                                                <button id="bntInsertar" class="btn-block btn-lg btn-spa-blue" type="button">Insertar</button>
+                                            </div>
+                                            <div class="col-md-3">
+                                                <button id="btnActualizar" class="btn-block btn-lg btn-spa-blue" type="button">Actualizar</button>
+                                            </div>
+                                            <div class="col-md-3">
+                                                <button id="btnEliminar" class="btn-block btn-lg btn-spa-blue" type="button">Eliminar</button>
+                                            </div>
+                                            <div class="col-md-3">
+                                                <button id="btnConsultar" class="btn-block btn-lg btn-spa-blue" type="button">Consultar</button>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-12">
+                                                <table id="tblReserva" class="table table-bordered table-striped">
+                                                    <thead>
+                                                        <tr>
+                                                            <th>Id</th>
+                                                            <th>Código</th>
+                                                            <th>Fecha Inicio</th>
+                                                            <th>Fecha Expiración</th>
+                                                            <th>Servicio</th>
+                                                            <th>Usuario</th>
+                                                        </tr>
+                                                    </thead>
+                                                    <tbody id="tblReservaBody">
+                                                        <!-- Aquí se llenan los datos de las reservas dinámicamente -->
+                                                    </tbody>
+                                                </table>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="card-footer">
+                                        <div id="dvMensaje" class=""></div>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div>
+
+        <!-- Control Sidebar -->
+        <aside class="control-sidebar control-sidebar-dark">
+            <!-- El contenido del sidebar de control va aquí -->
+        </aside>
+
+        <!-- Main Footer -->
+        <footer class="main-footer">
+            <strong>Copyright &copy; 2024 Your Project.</strong> All rights reserved.
+        </footer>
+    </div>
+
+    <!-- SCRIPTS -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="../Scripts/bootstrap.bundle.min.js"></script>
+    <script src="../Scripts/jquery.dataTables.min.js"></script>
+    <script src="../Scripts/dataTables.bootstrap4.min.js"></script>
+    <script src="Estilos/adminlte.min.js"></script>
+
+    <script src="Scripts/Menu.js"></script>
+    <script src="Scripts/Comunes/CRUD.js"></script>
+    <script src="Scripts/Comunes/Comunes.js"></script>
+    <script src="Scripts/Reserva.js"></script>
+</body>
+</html>

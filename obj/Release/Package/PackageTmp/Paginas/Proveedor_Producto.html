@@ -1,0 +1,288 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>ADMINISTRACION DE PROVEEDOR-PRODUCTO</title>
+
+    <!-- Google Font: Source Sans Pro -->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
+    <link href="Estilos/css/all.min.css" rel="stylesheet" />
+    <link href="Estilos/dataTables.bootstrap4.min.css" rel="stylesheet" />
+    <link href="Estilos/adminlte.min.css" rel="stylesheet" />
+    <link href="Estilos/select2.min.css" rel="stylesheet" />
+    <link href="Estilos/select2-bootstrap4.min.css" rel="stylesheet" />
+
+    <style>
+        body {
+            background: #f7fbfd; /* Fondo suave */
+            font-family: 'Segoe UI', Arial, sans-serif;
+        }
+
+        .card-primary {
+            border-radius: 18px; /* Bordes redondeados para la tarjeta */
+            box-shadow: 0 4px 24px rgba(80, 180, 255, 0.10); /* Sombra sutil */
+            border: none;
+        }
+
+        .card-header {
+            background: linear-gradient(90deg, #4fc3f7 0%, #b2ebf2 100%); /* Degradado para el encabezado */
+            border-radius: 18px 18px 0 0; /* Bordes superiores redondeados */
+            color: #fff;
+            text-align: center;
+            letter-spacing: 1px;
+            padding: 1rem 1.25rem; /* Ajuste de padding */
+        }
+
+        .card-title {
+            font-size: 1.5rem;
+            font-weight: 600;
+        }
+
+        .form-group label {
+            color: #1976d2; /* Color azul para las etiquetas */
+            font-weight: 500;
+            letter-spacing: 0.5px;
+        }
+
+            .form-group label span { /* Estilo para el asterisco de requerido */
+                color: #dc3545; /* Rojo de Bootstrap para indicar requerido */
+                margin-left: 3px;
+            }
+
+        .form-control {
+            border-radius: 12px; /* Bordes redondeados para inputs */
+            border: 1px solid #e3f2fd; /* Borde mas suave */
+            background: #fff;
+            box-shadow: none;
+            transition: border-color 0.2s, box-shadow 0.2s;
+        }
+
+            .form-control:focus {
+                border-color: #4fc3f7; /* Borde azul al enfocar */
+                box-shadow: 0 0 0 2px rgba(178, 235, 242, 0.5); /* Sombra de enfoque sutil */
+            }
+
+        /* Estilo para los botones principales (Insertar, Actualizar, Eliminar) */
+        .btn-spa-blue {
+            background: linear-gradient(90deg, #4fc3f7 0%, #81d4fa 100%);
+            color: #fff;
+            border: none;
+            border-radius: 18px;
+            font-weight: 600;
+            font-size: 1.1rem;
+            font-family: 'Segoe UI', Arial, sans-serif;
+            box-shadow: 0 2px 8px rgba(80, 180, 255, 0.10);
+            transition: background 0.3s, box-shadow 0.3s;
+            margin-bottom: 8px; /* Espaciado entre botones */
+        }
+
+            .btn-spa-blue:hover, .btn-spa-blue:focus {
+                background: linear-gradient(90deg, #29b6f6 0%, #4fc3f7 100%);
+                color: #fff;
+                box-shadow: 0 4px 16px rgba(80, 180, 255, 0.18);
+            }
+
+        /* Estilo para el boton "Limpiar Campos" (gris suave) */
+        .btn-spa-grey {
+            background: linear-gradient(90deg, #bdbdbd 0%, #e0e0e0 100%);
+            color: #424242;
+            border: none;
+            border-radius: 18px;
+            font-weight: 600;
+            font-size: 1.1rem;
+            font-family: 'Segoe UI', Arial, sans-serif;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+            transition: background 0.3s, box-shadow 0.3s;
+            margin-bottom: 8px;
+        }
+
+            .btn-spa-grey:hover, .btn-spa-grey:focus {
+                background: linear-gradient(90deg, #9e9e9e 0%, #bdbdbd 100%);
+                color: #fff;
+                box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1);
+            }
+
+        /* Estilo para la tabla */
+        .table thead th {
+            background: #e3f2fd; /* Fondo del encabezado de tabla */
+            color: #1976d2; /* Color de texto del encabezado */
+            border-bottom: 2px solid #b2ebf2; /* Borde inferior del encabezado */
+            font-weight: 600;
+        }
+
+        .table-bordered {
+            border-radius: 12px; /* Bordes redondeados para la tabla */
+            overflow: hidden; /* Importante para que los bordes redondeados se vean bien con el contenido */
+            border: 1px solid #e3f2fd; /* Borde general de la tabla */
+        }
+
+        .table-striped tbody tr:nth-of-type(odd) {
+            background-color: rgba(0, 0, 0, 0.03); /* Franjas para la tabla */
+        }
+
+        .table td, .table th {
+            border-color: #e3f2fd; /* Color de los bordes de las celdas */
+        }
+
+        .card-footer {
+            background: transparent;
+            border-top: none;
+        }
+
+        /* Nuevo estilo para asegurar que el content-wrapper no tenga desplazamiento */
+        .content-wrapper {
+            margin-left: 0 !important;
+            padding-left: 0 !important;
+            padding-right: 0 !important;
+        }
+
+        /* Media queries para responsividad */
+        @media (max-width: 767px) {
+            .card-body .row > div {
+                margin-bottom: 12px;
+            }
+
+            .btn-spa-blue, .btn-spa-grey {
+                font-size: 1rem; /* Un poco mas pequeno en moviles */
+                padding: .8rem 1rem;
+            }
+        }
+    </style>
+</head>
+<body class="hold-transition layout-top-nav">
+    <!-- REQUIRED WRAPPER -->
+    <div class="wrapper">
+
+        <!-- Navbar (Top navigation bar) -->
+        <!-- El div dvMenu ahora sera el contenedor directo para el navbar cargado desde Menu.html -->
+        <div id="dvMenu">
+            <!-- El contenido del menu (el <nav> de Menu.html) se cargara aqui -->
+        </div>
+        <!-- /.navbar -->
+        <!-- Content Wrapper. Contains page content -->
+        <div class="content-wrapper">
+            <!-- Content Header (Page header) - Puedes poner el titulo de la pagina aqui -->
+            <div class="content-header">
+                <div class="container-fluid">
+                    <div class="row mb-2">
+                        <div class="col-sm-6">
+                            <h1 class="m-0">Administracion de Asociaciones Proveedor-Producto</h1>
+                        </div><!-- /.col -->
+                    </div><!-- /.row -->
+                </div><!-- /.container-fluid -->
+            </div>
+            <!-- /.content-header -->
+            <!-- Main content -->
+            <section class="content">
+                <div class="container py-4">
+                    <!-- CAMBIADO: de container-fluid a container para centrar mejor el contenido principal -->
+                    <div class="row justify-content-center">
+                        <div class="col-lg-10 col-md-12">
+                            <div class="card card-primary">
+                                <div class="card-header">
+                                    <h3 class="card-title">ADMINISTRACION DE ASOCIACIONES PROVEEDOR-PRODUCTO</h3>
+                                </div>
+                                <form id="frmProveedorProducto">
+                                    <div class="card-body">
+                                        <div class="row mb-2">
+                                            <div class="col-md-6">
+                                                <div class="form-group">
+                                                    <input type="hidden" class="form-control" id="txtIdProveedorProducto">
+                                                    <label for="cboProveedor">PROVEEDOR <span>*</span></label>
+                                                    <select id="cboProveedor" class="form-control select2" style="width: 100%;">
+                                                        <option selected="selected" value="0">Seleccione un proveedor</option>
+                                                    </select>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <div class="form-group">
+                                                    <label for="cboProducto">PRODUCTO <span>*</span></label>
+                                                    <select id="cboProducto" class="form-control select2" style="width: 100%;">
+                                                        <option selected="selected" value="0">Seleccione un producto</option>
+                                                    </select>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="row mb-4" style="margin-top: 15px">
+                                            <div class="col-md-3">
+                                                <div class="form-group">
+                                                    <button type="button" id="btnInsertar" class="btn-block btn-lg btn-spa-blue">INSERTAR ASOCIACION</button>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-3">
+                                                <div class="form-group">
+                                                    <button type="button" id="btnActualizar" class="btn-block btn-lg btn-spa-blue">ACTUALIZAR ASOCIACION</button>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-3">
+                                                <div class="form-group">
+                                                    <button type="button" id="btnEliminar" class="btn-block btn-lg btn-spa-blue">ELIMINAR ASOCIACION</button>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-3">
+                                                <div class="form-group">
+                                                    <button type="button" id="btnLimpiar" class="btn-block btn-lg btn-spa-grey">LIMPIAR CAMPOS</button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <hr>
+                                        <div class="row">
+                                            <div class="col-12">
+                                                <table id="tblProveedorProducto" class="table table-bordered table-striped">
+                                                    <thead>
+                                                        <tr>
+                                                            <th>Editar</th>
+                                                            <th style="display:none;">Id</th>
+                                                            <th>Proveedor</th>
+                                                            <th>Producto</th>
+                                                        </tr>
+                                                    </thead>
+                                                    <tbody>
+                                                    </tbody>
+                                                </table>
+                                            </div>
+                                        </div>
+
+                                    </div>
+                                    <div class="card-footer">
+                                        <div id="dvMensaje" class=""></div>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+            <!-- /.content -->
+        </div>
+        <!-- /.content-wrapper -->
+        <!-- Control Sidebar (Opcional - si lo tienes) -->
+        <aside class="control-sidebar control-sidebar-dark">
+            <!-- El contenido del sidebar de control va aqui -->
+        </aside>
+        <!-- /.control-sidebar -->
+        <!-- Main Footer (Opcional - si lo tienes) -->
+        <footer class="main-footer">
+            <strong>Copyright &copy; 2024 Your Project.</strong> All rights reserved.
+        </footer>
+    </div>
+    <!-- ./wrapper -->
+    <!-- SCRIPTS -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script> <!-- Version de jQuery actualizada -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.2/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="../Scripts/jquery.dataTables.min.js"></script>
+    <script src="../Scripts/dataTables.bootstrap4.min.js"></script>
+
+    <script src="Scripts/select2.full.min.js"></script>
+    <!-- AdminLTE App JS (se a�ade para consistencia) -->
+    <script src="Estilos/adminlte.min.js"></script>
+
+    <!-- Tus scripts personalizados -->
+    <script src="Scripts/Menu.js"></script>
+    <script src="Scripts/Comunes/CRUD.js"></script>
+    <script src="Scripts/Comunes/Comunes.js"></script>
+    <script src="Scripts/Proveedor_Producto.js"></script>
+
+</body>
+</html>
